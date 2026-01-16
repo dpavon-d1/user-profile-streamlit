@@ -83,18 +83,29 @@ with left_col:
 
 with right_col:
     st.subheader("🎯 Funnel de Registro 2")
-    valores_reales = funnel['Cantidad']
+   
+    valores= funnel['Cantidad']
     etapas = funnel['Etapa']
 
-    # Texto personalizado: "35,215,664 (100%)"
-    textos = [f"{v:,}" for v in valores_reales]
-    x_log = np.log10(valores_reales)
+    # 2. Cálculos manuales
+    # Porcentaje respecto al total (Paso 1)
+    pct_initial = [(v / valores[0]) * 100 for v in valores]
+    # Porcentaje respecto al paso anterior (opcional, muy útil)
+    pct_previous = [100.0] + [(valores[i] / valores[i-1]) * 100 for i in range(1, len(valores))]
+
+    # 3. Crear etiquetas de texto personalizadas
+    # Formato: "35,215,664 (100%)"
+    textos_personalizados = [
+        f"{v:,}<br>{p:.2f}%" if p < 100 else f"{v:,}" 
+        for v, p in zip(valores, pct_initial)
+    ]
+
 
     fig_funnel2 = go.Figure(go.Funnel(
         y = etapas,
-        x = x_log,
-        text = textos,
-        textinfo = "text+percent initial", # Muestra el valor real y % respecto al inicio
+        x = np.log10(valores),
+        text = textos_personalizados,
+        textinfo = "text", 
         textposition = "inside",
         insidetextanchor = "middle",
         marker = {
@@ -118,6 +129,8 @@ with right_col:
         margin = dict(l=200), # Espacio para que no se corten los nombres de las etapas
         height = 500
     )
+
+
     st.plotly_chart(fig_funnel2, use_container_width=True)
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
     # st.subheader("📈 Evolución de Usuarios e Intención")
