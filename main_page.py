@@ -77,7 +77,7 @@ with right_col:
     fig_funnel2 = go.Figure(go.Funnelarea(
         labels = funnel['Etapa'],
         values = funnel['Cantidad'],
-        textinfo = "value+percent initial",
+        textinfo = "value+percent",
         marker = {"colors": ["#1565C0", "#2196F3", "#64B5F6"]},
         baseratio = 0.4,  # Base más ancha para mejor visualización
         aspectratio = 1.2  # Hace el funnel más alto/elongado
