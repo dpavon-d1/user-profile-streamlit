@@ -168,7 +168,7 @@ st.markdown("---")
 st.subheader("📱 Clasificación Según Dispositivo") 
 
 # Columnas: gráfico a la izquierda (60%), espacio vacío a la derecha (40%)
-col_grafico, col_vacia = st.columns([3, 2])
+col_grafico, col_vacia = st.columns([1, 1])
 
 with col_grafico:
     df_dispositivos = pd.DataFrame({
