@@ -63,7 +63,7 @@ st.markdown("---")
 left_col, right_col = st.columns([1, 1])
 
 with left_col:
-    st.subheader("🎯 Funnel de Registro")
+    st.subheader("Funnel de Registro")
    
     valores= funnel['Cantidad']
     etapas = funnel['Etapa']
@@ -117,8 +117,8 @@ with left_col:
 
 with right_col:
     # === MAPA DE USUARIOS POR PAÍS ===
-
-# Datos mock por país
+    st.subheader("Usuarios por País")
+    # --- 5. Datos mock por país ---
     paises_data = pd.DataFrame({
         'Pais': ['Argentina', 'México', 'España', 'Colombia', 'Chile', 'Perú'],
         'ISO': ['ARG', 'MEX', 'ESP', 'COL', 'CHL', 'PER'],  # Códigos ISO para el mapa
@@ -135,7 +135,6 @@ with right_col:
         hover_data=['Registros'],      # Datos adicionales en hover
         color_continuous_scale=[[0, '#4E8ACF'], [0.5, '#1565C0'], [1, '#2450A6']]  ,  # Escala de colores
         projection='natural earth',    # Tipo de proyección
-        title='📍 Usuarios por País'
     )
 
     fig_mapa.update_layout(
