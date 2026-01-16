@@ -8,6 +8,7 @@ st.sidebar.markdown("# Main page 🎈")
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np
 
 # Configuración de la página
 st.set_page_config(page_title="Infobae - Comportamiento & Conversión", layout="wide")
@@ -67,24 +68,55 @@ with left_col:
         y = funnel['Etapa'],
         x = funnel['Cantidad'],
         textinfo = "value+percent initial",
-        marker = {"color": ["#1565C0", "#2196F3", "#64B5F6"]}
+        textposition = "inside",
+        marker = {"color": ["#1565C0", "#2196F3", "#64B5F6"]},
+        connector = {"line": {"color": "#4a4a4a", "width": 1}}
     ))
+    fig_funnel.update_layout(
+        height=400,
+        margin=dict(t=20, b=20, l=20, r=20),
+        funnelgap=0.1,  # Espaciado entre barras
+        funnelgroupgap=0.1
+    )
     st.plotly_chart(fig_funnel, use_container_width=True)
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
 
 with right_col:
     st.subheader("🎯 Funnel de Registro 2")
-    fig_funnel2 = go.Figure(go.Funnelarea(
-        labels = funnel['Etapa'],
-        values = funnel['Cantidad'],
-        textinfo = "value+percent",
-        marker = {"colors": ["#1565C0", "#2196F3", "#64B5F6"]},
-        baseratio = 0.4,  # Base más ancha para mejor visualización
-        aspectratio = 1.2  # Hace el funnel más alto/elongado
+    valores_reales = funnel['Cantidad']
+    etapas = funnel['Etapa']
+
+    # Texto personalizado: "35,215,664 (100%)"
+    textos = [f"{v:,}" for v in valores_reales]
+    x_log = np.log10(valores_reales)
+
+    fig_funnel2 = go.Figure(go.Funnel(
+        y = etapas,
+        x = x_log,
+        text = textos,
+        textinfo = "text+percent initial", # Muestra el valor real y % respecto al inicio
+        textposition = "inside",
+        insidetextanchor = "middle",
+        marker = {
+            # "color": ["#2450A6", "#1E43E6", "#1E88E6"],
+            "color": ["#2450A6", "#1565C0", "#4E8ACF"],
+            "line": {"width": 1, "color": "white"}
+        },
+        connector = {"fillcolor": "#A6C6ED", "line": {"width": 0}},
+        hoverinfo = "y+text", # Al pasar el mouse muestra Etapa + Valor Real
     ))
+
     fig_funnel2.update_layout(
-        height=400,
-        margin=dict(t=20, b=20, l=20, r=20)
+        title = {"text": "<b>Embudo de Conversión - Infobae</b><br><span style='font-size:12px'>Escala logarítmica aplicada para visibilidad</span>"},
+        paper_bgcolor = "white",
+        plot_bgcolor = "white",
+        xaxis = {
+            "showticklabels": False, # Escondemos los números del logaritmo (2, 4, 6, 8)
+            "showgrid": False,
+            "zeroline": False
+        },
+        margin = dict(l=200), # Espacio para que no se corten los nombres de las etapas
+        height = 500
     )
     st.plotly_chart(fig_funnel2, use_container_width=True)
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
