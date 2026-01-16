@@ -153,7 +153,7 @@ with right_col:
             showsubunits=False,
             framewidth=0
         ),
-        height=600,
+        height=500,
         margin=dict(l=0, r=0, t=50, b=0)
     )
 
