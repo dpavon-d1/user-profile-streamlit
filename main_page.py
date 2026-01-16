@@ -167,41 +167,45 @@ with right_col:
 st.markdown("---")
 st.subheader("📱 Clasificación Según Dispositivo") 
 
-df_dispositivos = pd.DataFrame({
-    'Dispositivo': ['Mobile', 'Desktop', 'Tablet', 'Smart TV'],
-    'Registrado': [20, 12, 12, 12],
-    'Con Intención': [14, 38, 28, 88]
-})
+# Columnas: gráfico a la izquierda (60%), espacio vacío a la derecha (40%)
+col_grafico, col_vacia = st.columns([3, 2])
 
-# Colores por dispositivo
-colores = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
-estados = ['Registrado', 'Con Intención']
+with col_grafico:
+    df_dispositivos = pd.DataFrame({
+        'Dispositivo': ['Mobile', 'Desktop', 'Tablet', 'Smart TV'],
+        'Registrado': [20, 12, 12, 12],
+        'Con Intención': [14, 38, 28, 88]
+    })
 
-# Crear barras dinámicamente desde el DataFrame
-fig_device = go.Figure()
+    # Colores por dispositivo
+    colores = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
+    estados = ['Registrado', 'Con Intención']
 
-for i, row in df_dispositivos.iterrows():
-    fig_device.add_trace(go.Bar(
-        name=row['Dispositivo'],
-        x=estados,
-        y=[row['Registrado'], row['Con Intención']],
-        marker_color=colores[i]
-    ))
+    # Crear barras dinámicamente desde el DataFrame
+    fig_device = go.Figure()
 
-fig_device.update_layout(
-    barmode='group',
-    title='Usuarios por Dispositivo y Estado',
-    yaxis={'title': {'text': 'Usuarios'}},
-    xaxis={'title': {'text': 'Estado Usuario'}},
-    legend={
-        'orientation': 'h',
-        'yanchor': 'bottom',
-        'y': 1.02,
-        'xanchor': 'right',
-        'x': 1
-    }
-)
-st.plotly_chart(fig_device)
+    for i, row in df_dispositivos.iterrows():
+        fig_device.add_trace(go.Bar(
+            name=row['Dispositivo'],
+            x=estados,
+            y=[row['Registrado'], row['Con Intención']],
+            marker_color=colores[i]
+        ))
+
+    fig_device.update_layout(
+        barmode='group',
+        title='Usuarios por Dispositivo y Estado',
+        yaxis={'title': {'text': 'Usuarios'}},
+        xaxis={'title': {'text': 'Estado Usuario'}},
+        legend={
+            'orientation': 'h',
+            'yanchor': 'bottom',
+            'y': 1.02,
+            'xanchor': 'right',
+            'x': 1
+        }
+    )
+    st.plotly_chart(fig_device, use_container_width=True)
 
 # --- 6. TABLA DE FUENTE / MEDIO ---
 st.subheader("🌐 Detalle por Fuente / Medio")
