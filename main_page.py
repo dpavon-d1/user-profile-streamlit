@@ -168,7 +168,7 @@ st.markdown("---")
 st.subheader("📱 Clasificación Según Dispositivo") 
 
 # Columnas: gráfico a la izquierda (60%), espacio vacío a la derecha (40%)
-col_grafico, col_vacia = st.columns([1, 1])
+col_grafico, col_vacia, col_vacia2 = st.columns([1, 1, 1])
 
 with col_grafico:
     df_dispositivos = pd.DataFrame({
@@ -206,6 +206,46 @@ with col_grafico:
         }
     )
     st.plotly_chart(fig_device, use_container_width=True)
+
+with col_vacia:
+    st.subheader("Según historial de sesiones")
+
+    df_sesion_historial = pd.DataFrame({
+    'Tipo Usuario': ['Recurrente', 'Nuevo'],
+    'Registrado': [20,56],
+    'Con Intención': [14,89]
+    })
+
+    # Colores por dispositivo
+    colores = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
+    estados = ['Recurrente', 'Nuevo']
+
+    # Crear barras dinámicamente desde el DataFrame
+    fig_sesion_historial = go.Figure()
+
+    for i, row in df_sesion_historial.iterrows():
+        fig_sesion_historial.add_trace(go.Bar(
+            name=row['Tipo Usuario'],
+            x=estados,
+            y=[row['Registrado'], row['Con Intención']],
+            marker_color=colores[i]
+        ))
+
+    fig_sesion_historial.update_layout(
+        barmode='group',
+        title='Según historial de sesiones',
+        yaxis={'title': {'text': 'Usuarios'}},
+        xaxis={'title': {'text': 'Tipo Usuario'}},
+        legend={
+            'orientation': 'h',
+            'yanchor': 'bottom',
+            'y': 1.02,
+            'xanchor': 'right',
+            'x': 1
+        }
+    )
+
+    st.plotly_chart(fig_sesion_historial, use_container_width=True)
 
 # --- 6. TABLA DE FUENTE / MEDIO ---
 st.subheader("🌐 Detalle por Fuente / Medio")
