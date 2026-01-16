@@ -74,10 +74,17 @@ with left_col:
 
 with right_col:
     st.subheader("🎯 Funnel de Registro 2")
-    fig_funnel2 = px.funnel_area(
-        names = funnel['Etapa'],
-        values= funnel['Cantidad'],
-        color_discrete_sequence=["#1565C0", "#2196F3", "#64B5F6"]
+    fig_funnel2 = go.Figure(go.Funnelarea(
+        labels = funnel['Etapa'],
+        values = funnel['Cantidad'],
+        textinfo = "value+percent initial",
+        marker = {"colors": ["#1565C0", "#2196F3", "#64B5F6"]},
+        baseratio = 0.4,  # Base más ancha para mejor visualización
+        aspectratio = 1.2  # Hace el funnel más alto/elongado
+    ))
+    fig_funnel2.update_layout(
+        height=400,
+        margin=dict(t=20, b=20, l=20, r=20)
     )
     st.plotly_chart(fig_funnel2, use_container_width=True)
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
