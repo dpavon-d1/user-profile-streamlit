@@ -155,7 +155,7 @@ with right_col:
             showsubunits=False,         # Sin subdivisiones internas
             subunitcolor='white'
         ),
-        height=700,
+        height=600,
         margin=dict(l=0, r=0, t=50, b=0)
     )
 
