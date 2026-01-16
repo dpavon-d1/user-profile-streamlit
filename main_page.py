@@ -116,11 +116,51 @@ with left_col:
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
 
 with right_col:
-    st.subheader("📈 Evolución de Usuarios e Intención")
-    fig_evo = px.line(evolution, x='Fecha', y=['Intención de Registro', 'Registro'], 
-                  markers=True, line_shape="spline",
-                  color_discrete_map={"Intención de Registro": "#2196F3", "Registro": "#FF9800"})
-    st.plotly_chart(fig_evo, use_container_width=True)
+    # === MAPA DE USUARIOS POR PAÍS ===
+
+# Datos mock por país
+    paises_data = pd.DataFrame({
+        'Pais': ['Argentina', 'México', 'España', 'Colombia', 'Chile', 'Perú'],
+        'ISO': ['ARG', 'MEX', 'ESP', 'COL', 'CHL', 'PER'],  # Códigos ISO para el mapa
+        'Usuarios': [15000, 8500, 4200, 3100, 2800, 1900],
+        'Registros': [2500, 1200, 680, 450, 380, 290]
+    })
+
+    # Mapa Choropleth (países coloreados por métrica)
+    fig_mapa = px.choropleth(
+        paises_data,
+        locations='ISO',               # Columna con códigos de país
+        color='Usuarios',              # Métrica para colorear
+        hover_name='Pais',             # Nombre al pasar mouse
+        hover_data=['Registros'],      # Datos adicionales en hover
+        color_continuous_scale=[[0, '#FEF0E3'], [0.5, '#F9B86C'], [1, '#F28322']] ,  # Escala de colores
+        projection='natural earth',    # Tipo de proyección
+        title='📍 Usuarios por País'
+    )
+
+    fig_mapa.update_layout(
+        geo=dict(
+            showframe=False,
+            showcoastlines=True,
+            coastlinecolor='lightgray',
+            showland=True,
+            countrywidth=1,
+            landcolor='#f5f5f5',
+            showcountries=True,
+            countrycolor='lightgray',
+            showlakes=False,            # Sin lagos
+            showrivers=False,
+            lataxis=dict(showgrid=False, gridcolor='white'),  # Sin cuadrícula latitud
+            lonaxis=dict(showgrid=False, gridcolor='white'),  # Sin cuadrícula longitud
+            showsubunits=False,         # Sin subdivisiones internas
+            subunitcolor='white'
+        ),
+        height=500,
+        margin=dict(l=0, r=0, t=50, b=0)
+    )
+
+    # fig_mapa.show()
+    st.plotly_chart(fig_mapa, use_container_width=True)
 
 # --- 5. CLASIFICACIÓN POR DISPOSITIVO ---
 st.markdown("---")
