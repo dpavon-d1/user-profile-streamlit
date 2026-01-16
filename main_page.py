@@ -73,11 +73,19 @@ with left_col:
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
 
 with right_col:
-    st.subheader("📈 Evolución de Usuarios e Intención")
-    fig_evo = px.line(evolution, x='Fecha', y=['Intención de Registro', 'Registro'], 
-                  markers=True, line_shape="spline",
-                  color_discrete_map={"Intención de Registro": "#2196F3", "Registro": "#FF9800"})
-    st.plotly_chart(fig_evo, use_container_width=True)
+    st.subheader("🎯 Funnel de Registro 2")
+    fig_funnel2 = px.funnel_area(
+        names = funnel['Etapa'],
+        values= funnel['Cantidad'],
+        color_discrete_sequence=["#1565C0", "#2196F3", "#64B5F6"]
+    )
+    st.plotly_chart(fig_funnel2, use_container_width=True)
+    st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
+    # st.subheader("📈 Evolución de Usuarios e Intención")
+    # fig_evo = px.line(evolution, x='Fecha', y=['Intención de Registro', 'Registro'], 
+    #               markers=True, line_shape="spline",
+    #               color_discrete_map={"Intención de Registro": "#2196F3", "Registro": "#FF9800"})
+    # st.plotly_chart(fig_evo, use_container_width=True)
 
 # --- 5. CLASIFICACIÓN POR DISPOSITIVO ---
 st.markdown("---")
