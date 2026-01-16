@@ -20,7 +20,7 @@ def load_mock_data():
     # Datos del Funnel
     funnel_data = {
         'Etapa': ['Usuarios Totales', 'Intención de Registro', 'Registro Finalizado'],
-        'Cantidad': [35215664, 3715, 615]
+        'Cantidad': [35215, 3715, 615]
     }
     
     # Evolución Temporal (1 al 7 de Enero 2026)
