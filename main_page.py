@@ -141,19 +141,18 @@ with right_col:
     fig_mapa.update_layout(
         geo=dict(
             showframe=False,
-            showcoastlines=True,
-            coastlinecolor='lightgray',
+            showcoastlines=False,       # Sin líneas de costa
             showland=True,
-            countrywidth=1,
             landcolor='#f5f5f5',
             showcountries=True,
-            countrycolor='lightgray',
-            showlakes=False,            # Sin lagos
+            countrycolor='#cccccc',     # Gris claro para bordes de países
+            countrywidth=0.5,           # Línea fina
+            showlakes=False,
             showrivers=False,
-            lataxis=dict(showgrid=False, gridcolor='white'),  # Sin cuadrícula latitud
-            lonaxis=dict(showgrid=False, gridcolor='white'),  # Sin cuadrícula longitud
-            showsubunits=False,         # Sin subdivisiones internas
-            subunitcolor='white'
+            lataxis=dict(showgrid=False),
+            lonaxis=dict(showgrid=False),
+            showsubunits=False,
+            framewidth=0
         ),
         height=600,
         margin=dict(l=0, r=0, t=50, b=0)
