@@ -203,13 +203,12 @@ with col_grafico:
             'y': 1.02,
             'xanchor': 'right',
             'x': 1
-        }
+        },
+        height=400
     )
     st.plotly_chart(fig_device, use_container_width=True)
 
 with col_vacia:
-    st.subheader("Según historial de sesiones")
-
     df_sesion_historial = pd.DataFrame({
     'Tipo Usuario': ['Recurrente', 'Nuevo'],
     'Registrado': [20,56],
@@ -242,7 +241,8 @@ with col_vacia:
             'y': 1.02,
             'xanchor': 'right',
             'x': 1
-        }
+        },
+        height=400
     )
 
     st.plotly_chart(fig_sesion_historial, use_container_width=True)
