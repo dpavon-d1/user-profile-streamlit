@@ -159,8 +159,11 @@ with right_col:
         margin=dict(l=0, r=0, t=50, b=0)
     )
 
-    # fig_mapa.show()
-    st.plotly_chart(fig_mapa, use_container_width=True)
+    st.plotly_chart(fig_mapa, use_container_width=True, config={
+        'scrollZoom': False,
+        'doubleClick': False,
+        'displayModeBar': False
+    })
 
 # --- 5. CLASIFICACIÓN POR DISPOSITIVO ---
 st.markdown("---")
