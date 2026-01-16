@@ -108,8 +108,8 @@ with right_col:
 
     fig_funnel2.update_layout(
         title = {"text": "<b>Embudo de Conversión - Infobae</b><br><span style='font-size:12px'>Escala logarítmica aplicada para visibilidad</span>"},
-        paper_bgcolor = "white",
-        plot_bgcolor = "white",
+        # paper_bgcolor = "white",
+        # plot_bgcolor = "white",
         xaxis = {
             "showticklabels": False, # Escondemos los números del logaritmo (2, 4, 6, 8)
             "showgrid": False,
