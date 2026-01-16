@@ -64,25 +64,6 @@ left_col, right_col = st.columns([1, 1])
 
 with left_col:
     st.subheader("🎯 Funnel de Registro")
-    fig_funnel = go.Figure(go.Funnel(
-        y = funnel['Etapa'],
-        x = funnel['Cantidad'],
-        textinfo = "value+percent initial",
-        textposition = "inside",
-        marker = {"color": ["#1565C0", "#2196F3", "#64B5F6"]},
-        connector = {"line": {"color": "#4a4a4a", "width": 1}}
-    ))
-    fig_funnel.update_layout(
-        height=400,
-        margin=dict(t=20, b=20, l=20, r=20),
-        funnelgap=0.1,  # Espaciado entre barras
-        funnelgroupgap=0.1
-    )
-    st.plotly_chart(fig_funnel, use_container_width=True)
-    st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
-
-with right_col:
-    st.subheader("🎯 Funnel de Registro 2")
    
     valores= funnel['Cantidad']
     etapas = funnel['Etapa']
@@ -101,7 +82,7 @@ with right_col:
     ]
 
 
-    fig_funnel2 = go.Figure(go.Funnel(
+    fig_funnel = go.Figure(go.Funnel(
         y = etapas,
         x = np.log10(valores),
         text = textos_personalizados,
@@ -117,7 +98,7 @@ with right_col:
         hoverinfo = "y+text", # Al pasar el mouse muestra Etapa + Valor Real
     ))
 
-    fig_funnel2.update_layout(
+    fig_funnel.update_layout(
         title = {"text": "<b>Embudo de Conversión - Infobae</b><br><span style='font-size:12px'>Escala logarítmica aplicada para visibilidad</span>"},
         # paper_bgcolor = "white",
         # plot_bgcolor = "white",
@@ -131,13 +112,15 @@ with right_col:
     )
 
 
-    st.plotly_chart(fig_funnel2, use_container_width=True)
+    st.plotly_chart(fig_funnel, use_container_width=True)
     st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
-    # st.subheader("📈 Evolución de Usuarios e Intención")
-    # fig_evo = px.line(evolution, x='Fecha', y=['Intención de Registro', 'Registro'], 
-    #               markers=True, line_shape="spline",
-    #               color_discrete_map={"Intención de Registro": "#2196F3", "Registro": "#FF9800"})
-    # st.plotly_chart(fig_evo, use_container_width=True)
+
+with right_col:
+    st.subheader("📈 Evolución de Usuarios e Intención")
+    fig_evo = px.line(evolution, x='Fecha', y=['Intención de Registro', 'Registro'], 
+                  markers=True, line_shape="spline",
+                  color_discrete_map={"Intención de Registro": "#2196F3", "Registro": "#FF9800"})
+    st.plotly_chart(fig_evo, use_container_width=True)
 
 # --- 5. CLASIFICACIÓN POR DISPOSITIVO ---
 st.markdown("---")
