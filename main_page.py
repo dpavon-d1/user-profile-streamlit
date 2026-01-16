@@ -133,7 +133,7 @@ with right_col:
         color='Usuarios',              # Métrica para colorear
         hover_name='Pais',             # Nombre al pasar mouse
         hover_data=['Registros'],      # Datos adicionales en hover
-        color_continuous_scale=[[0, '#FEF0E3'], [0.5, '#F9B86C'], [1, '#F28322']] ,  # Escala de colores
+        color_continuous_scale=[[0, '#4E8ACF'], [0.5, '#1565C0'], [1, '#2450A6']]  ,  # Escala de colores
         projection='natural earth',    # Tipo de proyección
         title='📍 Usuarios por País'
     )
