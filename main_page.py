@@ -50,11 +50,11 @@ dispositivo = st.sidebar.multiselect("Dispositivo", devices['Dispositivo'].uniqu
 
 # --- 3. KPIs PRINCIPALES ---
 col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric("Sesiones con Intención", "6.650") [cite: 23]
-col2.metric("% Rebote", "4,7%", "-0.5%") [cite: 26]
-col3.metric("Duración Media", "00:23:10") [cite: 24]
-col4.metric("Interacción Media", "00:05:42") [cite: 28]
-col5.metric("Tasa de Registro", "16,6%") [cite: 11]
+col1.metric("Sesiones con Intención", "6.650") 
+col2.metric("% Rebote", "4,7%", "-0.5%") 
+col3.metric("Duración Media", "00:23:10") 
+col4.metric("Interacción Media", "00:05:42") 
+col5.metric("Tasa de Registro", "16,6%") 
 
 st.markdown("---")
 
@@ -70,7 +70,7 @@ with left_col:
         marker = {"color": ["#1565C0", "#2196F3", "#64B5F6"]}
     ))
     st.plotly_chart(fig_funnel, use_container_width=True)
-    st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") [cite: 12]
+    st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
 
 with right_col:
     st.subheader("📈 Evolución de Usuarios e Intención")
@@ -81,18 +81,18 @@ with right_col:
 
 # --- 5. CLASIFICACIÓN POR DISPOSITIVO ---
 st.markdown("---")
-st.subheader("📱 Clasificación Según Dispositivo") [cite: 15]
+st.subheader("📱 Clasificación Según Dispositivo") 
 fig_device = px.bar(devices, x='Dispositivo', y=['Intención', 'Registro'], 
                     barmode='group', 
                     color_discrete_sequence=["#2196F3", "#FF9800"])
 st.plotly_chart(fig_device, use_container_width=True)
 
 # --- 6. TABLA DE FUENTE / MEDIO ---
-st.subheader("🌐 Detalle por Fuente / Medio") [cite: 20]
+st.subheader("🌐 Detalle por Fuente / Medio")
 # Mock de la tabla de tu PDF
 df_fuente = pd.DataFrame([
     {"Fuente/Medio": "(direct) / (none)", "Usuarios": 20795580, "Intención": 1507, "Registrados": 230},
     {"Fuente/Medio": "google / organic", "Usuarios": 9886000, "Intención": 1127, "Registrados": 192},
     {"Fuente/Medio": "bing / organic", "Usuarios": 164342, "Intención": 263, "Registrados": 37},
-]) [cite: 20]
+])
 st.table(df_fuente)
