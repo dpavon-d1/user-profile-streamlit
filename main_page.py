@@ -201,7 +201,7 @@ fig_device.update_layout(
         'x': 1
     }
 )
-st.plotly_chart(fig_device, use_container_width=True)
+st.plotly_chart(fig_device)
 
 # --- 6. TABLA DE FUENTE / MEDIO ---
 st.subheader("🌐 Detalle por Fuente / Medio")
