@@ -165,7 +165,7 @@ with right_col:
 
 # --- 5. CLASIFICACIÓN POR DISPOSITIVO ---
 st.markdown("---")
-st.subheader("📱 Clasificación Según Dispositivo") 
+st.subheader("Clasificación de Usuarios") 
 
 # Columnas: gráfico a la izquierda (60%), espacio vacío a la derecha (40%)
 col_grafico, col_vacia, col_vacia2 = st.columns([1, 1, 1])
@@ -249,10 +249,85 @@ with col_vacia:
 
 # --- 6. TABLA DE FUENTE / MEDIO ---
 st.subheader("🌐 Detalle por Fuente / Medio")
-# Mock de la tabla de tu PDF
-df_fuente = pd.DataFrame([
-    {"Fuente/Medio": "(direct) / (none)", "Usuarios": 20795580, "Intención": 1507, "Registrados": 230},
-    {"Fuente/Medio": "google / organic", "Usuarios": 9886000, "Intención": 1127, "Registrados": 192},
-    {"Fuente/Medio": "bing / organic", "Usuarios": 164342, "Intención": 263, "Registrados": 37},
-])
-st.table(df_fuente)
+
+from matplotlib.colors import LinearSegmentedColormap
+
+# Datos de ejemplo con más fuentes/medios
+df_custom = pd.DataFrame({
+    'Fuente / Medio': [
+        '(direct) / (none)',
+        'google / organic',
+        'google / cpc',
+        'bing / organic',
+        'bing / cpc',
+        'yahoo / organic',
+        'duckduckgo / organic',
+        'facebook.com / referral',
+        'instagram.com / referral',
+        'twitter.com / referral',
+        'linkedin.com / referral',
+        'tiktok.com / referral',
+        'youtube.com / referral',
+        'news.google.com / referral',
+        'flipboard.com / referral',
+        'pinterest.com / referral',
+        'reddit.com / referral',
+        'whatsapp / referral',
+        'telegram / referral',
+        'email / newsletter',
+        'email / marketing',
+        'email / transactional',
+        'push / notification',
+        'app / internal',
+        'ampproject.org / referral'
+    ],
+    'Usuarios': [
+        20795580, 9886000, 1061458, 164342, 45230, 28450, 12300,
+        851689, 456780, 234560, 189340, 567890, 345670,
+        510695, 123450, 98760, 156780, 234560, 89450,
+        321168, 156780, 45670, 234560, 678900, 756168
+    ],
+    'Intención de Registro': [
+        1507, 1127, 322, 263, 89, 45, 23,
+        83, 156, 78, 234, 345, 123,
+        21, 34, 12, 67, 89, 23,
+        456, 234, 67, 123, 45, 88
+    ],
+    'Registrados': [
+        230, 192, 62, 37, 12, 8, 4,
+        5, 23, 11, 45, 67, 19,
+        4, 5, 2, 12, 15, 4,
+        89, 45, 12, 23, 8, 8
+    ]
+})
+
+# Crear escalas de color personalizadas (de claro a oscuro)
+cmap_naranja = LinearSegmentedColormap.from_list('naranja', ['#FEF0E3', '#E38766', '#A64724'])
+cmap_azul = LinearSegmentedColormap.from_list('azul', ['#E3F0FE', '#4E8ACF', '#2450A6'])
+cmap_purpura = LinearSegmentedColormap.from_list('purpura', ['#FFF1E5', '#F5A964', '#F28322'])
+
+# Aplicar colores personalizados
+styled_custom = df_custom.style.background_gradient(
+    subset=['Usuarios'], 
+    cmap=cmap_azul
+).background_gradient(
+    subset=['Intención de Registro'], 
+    cmap=cmap_naranja
+).background_gradient(
+    subset=['Registrados'], 
+    cmap=cmap_purpura
+).format({
+    'Usuarios': '{:,.0f}',
+    'Intención de Registro': '{:,.0f}',
+    'Registrados': '{:,.0f}'
+})
+
+# Selectores en sidebar
+top_n = st.sidebar.slider("Top N", 5, 50, 10)
+ordenar_por = st.sidebar.selectbox("Ordenar por", ['Usuarios', 'Intención de Registro', 'Registrados'])
+
+# Filtrar
+df_top = df_custom.nlargest(top_n, ordenar_por)
+
+# Mostrar
+st.dataframe(styled_custom, use_container_width=True, hide_index=True)
