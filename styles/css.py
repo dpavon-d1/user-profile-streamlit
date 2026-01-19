@@ -80,7 +80,7 @@ def get_all_css():
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     margin-bottom: 12px;
     width: fit-content;
