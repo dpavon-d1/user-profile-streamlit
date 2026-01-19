@@ -383,6 +383,7 @@ def get_kpi_data(countries: List[str] = None) -> dict:
     Returns:
         dict con los KPIs del dashboard
     """
+
     # Valores base
     kpis = {
         'sesiones_intencion': 6650,

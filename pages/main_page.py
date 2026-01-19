@@ -207,6 +207,9 @@ render_section_title("Afinidad de Usuarios - Modelo Wattson")
 
 # Conceptos
 concepts_df = get_concepts_data()
+concepts_df["totals"] = concepts_df["Usuarios con Intención"] + concepts_df["Usuarios Registrados"]
+concepts_df = concepts_df.sort_values(by='totals', ascending=False)
+concepts_df.drop(columns=['totals'], inplace=True)
 fig_concepts = create_grouped_bar_chart(
     df=concepts_df,
     x_col='Concepto',
