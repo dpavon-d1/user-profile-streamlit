@@ -92,11 +92,8 @@ st.markdown("""
 }
 /* Estilo para st.info */
 [data-testid="stAlert"] {
-    background-color: transparent;
-    border: none;
-}
-[data-testid="stAlert"] p {
-    color: #000000;
+    background-color: "#EBEBEB";
+    /* border: 1px solid #EBEBEB; */
 }
 </style>
 """, unsafe_allow_html=True)
