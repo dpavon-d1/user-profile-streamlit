@@ -58,7 +58,7 @@ def create_heatmap_table(
 def style_dataframe_heatmap(
     df: pd.DataFrame,
     columns_config: dict = None
-) -> pd.io.formats.style.Styler:
+):
     """
     Aplica estilos de heatmap a un DataFrame de Pandas.
     
