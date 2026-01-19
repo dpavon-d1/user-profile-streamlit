@@ -264,6 +264,7 @@ with col_vacia2:
 
     # OPCIÓN 1: Heatmap con Plotly (gráfico interactivo)
     fig_heatmap_segmento_consumo = go.Figure(data=go.Heatmap(
+        showscale=False,
         z=df_heatmap_segmento_consumo.values,
         x=df_heatmap_segmento_consumo.columns,
         y=df_heatmap_segmento_consumo.index,
