@@ -59,7 +59,7 @@ st.markdown("""
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-top: 4px solid #F28322;
+    border: 4px solid #F28322;
     text-align: center;
     margin: 5px;
 }
