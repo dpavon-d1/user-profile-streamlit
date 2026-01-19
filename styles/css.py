@@ -74,28 +74,27 @@ def get_all_css():
 .metric-card {{
     background-color: #ffffff;
     border-radius: 8px;
-    padding: 10px 8px;
+    padding: 12px 16px;
     box-shadow: 0 4px 4px rgba(0,0,0,0.1);
     border-left: 4px solid #F28322;
-    display: flex;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     margin-bottom: 12px;
-    min-width: 150px;
-    flex: 1;
-    max-width: 200px;
+    width: fit-content;
+    min-width: 100%;
 }}
 .metric-card h3 {{
     color: #666666;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    margin: 0 0 4px 0;
+    margin: 0 0 6px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
-    width: 100%;
+    white-space: nowrap;
 }}
 .metric-card p {{
     color: #1a1a1a;
@@ -104,7 +103,7 @@ def get_all_css():
     margin: 0;
     line-height: 1;
     text-align: center;
-    width: 100%;
+    white-space: nowrap;
 }}
 
 /* === ST.INFO TRANSPARENTE === */
