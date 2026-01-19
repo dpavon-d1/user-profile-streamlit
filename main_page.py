@@ -235,15 +235,16 @@ with col_vacia:
     fig_sesion_historial.update_layout(
         barmode='group',
         title='Según historial de sesiones',
-        bargap=0.5,        # Más espacio entre grupos (centra las barras)
-        bargroupgap=0.02,  # Barras casi pegadas
+        bargap=0.5,
+        bargroupgap=0.02,
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
             'y': 1.02,
             'xanchor': 'right',
             'x': 1
-        }
+        },
+        height=400  # Misma altura que los otros gráficos
     )
 
 
