@@ -68,7 +68,7 @@ st.markdown("""
 }
 .metric-card h3 {
     color: #666666;
-    font-size: 11px;
+    font-size: 18px;
     font-weight: 500;
     margin: 0 0 4px 0;
     text-transform: uppercase;
@@ -78,7 +78,7 @@ st.markdown("""
 }
 .metric-card p {
     color: #1a1a1a;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     margin: 0;
     line-height: 1;
