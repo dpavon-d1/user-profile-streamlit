@@ -201,7 +201,7 @@ with col_grafico:
             'orientation': 'h',
             'yanchor': 'bottom',
             'y': 1.02,
-            'xanchor': 'right',
+            'xanchor': 'center',
             'x': 1
         },
         height=400
@@ -241,7 +241,7 @@ with col_vacia:
             'orientation': 'h',
             'yanchor': 'bottom',
             'y': 1.02,
-            'xanchor': 'right',
+            'xanchor': 'center',
             'x': 1
         },
         height=400  # Misma altura que los otros gráficos
