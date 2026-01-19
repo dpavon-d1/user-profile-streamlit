@@ -527,7 +527,7 @@ fig_combinado.update_layout(
     height=450,
     hovermode='x unified',
     plot_bgcolor='#f5f5f5',
-    paper_bgcolor='#f5f5f5',
+    # paper_bgcolor='#f5f5f5',
     legend=dict(
         orientation='h',
         yanchor='bottom',
