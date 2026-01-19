@@ -224,7 +224,7 @@ with col_vacia:
 
     for i, row in df_sesion_historial.iterrows():
         fig_sesion_historial.add_trace(go.Bar(
-            # name=row['Tipo Usuario'],
+            name=row['Tipo Usuario'],
             x=estados,
             y=[row['Registrado'], row['Con Intención']],
             marker_color=colores[i]
