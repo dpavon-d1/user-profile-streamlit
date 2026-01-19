@@ -3,7 +3,7 @@ Componentes de KPI Cards para Streamlit.
 """
 
 import streamlit as st
-from styles.css import metric_card_html, kpi_container_html
+from styles.css import metric_card_html
 
 
 def render_single_kpi(title: str, value: str):
@@ -17,26 +17,19 @@ def render_single_kpi(title: str, value: str):
     st.markdown(metric_card_html(title, value), unsafe_allow_html=True)
 
 
-def render_kpi_cards(kpis: dict):
+def render_kpi_cards(kpis: dict, columns: int = 5):
     """
-    Renderiza múltiples KPI cards en columnas centradas.
+    Renderiza múltiples KPI cards en columnas.
     
     Args:
         kpis: Dict con {título: valor}
-        columns: Número de columnas (no usado, se mantiene por compatibilidad)
+        columns: Número de columnas
     """
-    # Generar HTML de todas las cards
-    cards_html = ""
-    for title, value in kpis.items():
-        cards_html += f"""
-        <div class="metric-card">
-            <h3>{title}</h3>
-            <p>{value}</p>
-        </div>
-        """
+    cols = st.columns(columns)
     
-    # Renderizar contenedor centrado con todas las cards
-    st.markdown(kpi_container_html(cards_html), unsafe_allow_html=True)
+    for i, (title, value) in enumerate(kpis.items()):
+        with cols[i % columns]:
+            render_single_kpi(title, value)
 
 
 def render_kpi_row(kpi_data: dict) -> None:
@@ -50,5 +43,5 @@ def render_kpi_row(kpi_data: dict) -> None:
     if kpi_data is None or len(kpi_data.keys()) == 0:
         return
 
-    render_kpi_cards(kpi_data)
+    render_kpi_cards(kpi_data, columns=5)
 
