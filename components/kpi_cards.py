@@ -40,6 +40,8 @@ def render_kpi_cards(kpis: dict):
         justify-content: center;
         text-align: center;
         min-width: 150px;
+        flex: 0 1 calc(20% - 12px); /* Máximo 5 cards por fila */
+        max-width: calc(20% - 12px);
     }}
     .metric-card h3 {{
         color: #666666;
