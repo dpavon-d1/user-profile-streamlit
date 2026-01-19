@@ -1,8 +1,8 @@
 import streamlit as st
 
 # Main page content
-st.markdown("# Main page 🎈")
-st.sidebar.markdown("# Main page 🎈")
+st.markdown("# Main page")
+st.sidebar.markdown("# Main page")
 
 
 import pandas as pd
@@ -13,7 +13,7 @@ import numpy as np
 # Configuración de la página
 st.set_page_config(page_title="Infobae - Comportamiento & Conversión", layout="wide")
 
-st.title("📊 Comportamiento & Conversión a Registro")
+st.title("Comportamiento & Conversión a Registro")
 st.markdown("---")
 
 # --- 1. MOCK DE DATOS (Basado en tus reportes) ---
