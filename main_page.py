@@ -196,7 +196,7 @@ with col_grafico:
         barmode='group',
         title='Según Dispositivo y Estado',
         yaxis={'title': {'text': 'Usuarios'}},
-        xaxis={'title': {'text': 'Estado Usuario'}},
+        # xaxis={'title': {'text': 'Estado Usuario'}},
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
