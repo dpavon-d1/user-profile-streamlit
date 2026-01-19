@@ -236,6 +236,11 @@ with right_col:
         height=500,
         margin=dict(l=0, r=0, t=50, b=0)
     )
+
+    fig_mapa.update_traces(
+    marker_line_color='#cccccc', # Igualamos al color de los otros países
+    marker_line_width=0.5        # Le damos el mismo grosor
+)
     st.plotly_chart(fig_mapa, use_container_width=True, config={
         'scrollZoom': False,
         'doubleClick': False,
