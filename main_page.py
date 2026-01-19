@@ -108,9 +108,7 @@ with left_col:
             "zeroline": False
         },
         margin = dict(l=200), # Espacio para que no se corten los nombres de las etapas
-        height = 500,
-        paper_bgcolor = "#EBEBEB",
-        plot_bgcolor = "#EBEBEB",
+        height = 500
     )
 
 
@@ -156,8 +154,6 @@ with right_col:
             showsubunits=False,
             framewidth=0
         ),
-        paper_bgcolor = "#EBEBEB",
-        plot_bgcolor = "#EBEBEB",
         height=500,
         margin=dict(l=0, r=0, t=50, b=0)
     )
@@ -201,14 +197,12 @@ with col_grafico:
         title='Según Dispositivo y Estado',
         # yaxis={'title': {'text': 'Usuarios'}},
         # xaxis={'title': {'text': 'Estado Usuario'}},
-        paper_bgcolor = "#EBEBEB",
-        plot_bgcolor = "#EBEBEB",
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
             'y': 1.02,
-            'xanchor': 'center',
-            'x': 0.5
+            'xanchor': 'right',
+            'x': 1
         },
         height=400
     )
@@ -243,14 +237,12 @@ with col_vacia:
         title='Según historial de sesiones',
         bargap=0.5,
         bargroupgap=0.02,
-        paper_bgcolor = "#EBEBEB",
-        plot_bgcolor = "#EBEBEB",
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
             'y': 1.02,
-            'xanchor': 'center',
-            'x': 0.5
+            'xanchor': 'right',
+            'x': 1
         },
         height=400  # Misma altura que los otros gráficos
     )
@@ -288,8 +280,6 @@ with col_vacia2:
 
     fig_heatmap_segmento_consumo.update_layout(
         title='Según segmento consumo',
-        paper_bgcolor = "#EBEBEB",
-        plot_bgcolor = "#EBEBEB",
         height=400,
         # xaxis={'title': 'Usuarios'},
         # yaxis={'title': 'Segmento Consumo', 'autorange': 'reversed'}  # Para que la primera fila quede arriba
