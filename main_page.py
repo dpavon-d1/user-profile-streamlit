@@ -13,7 +13,12 @@ import numpy as np
 # Configuración de la página
 st.set_page_config(page_title="Infobae - Comportamiento & Conversión", layout="wide")
 
-st.title("Comportamiento & Conversión a Registro")
+# Logo centrado
+col1, col2, col3 = st.columns([1, 1, 1])
+with col2:
+    st.image("icono.png", width=150)
+
+st.markdown("<h1 style='text-align: center;'>Comportamiento & Conversión a Registro</h1>", unsafe_allow_html=True)
 st.markdown("---")
 
 # --- 1. MOCK DE DATOS (Basado en tus reportes) ---
@@ -209,7 +214,7 @@ with right_col:
         hover_data=['Intención', 'Registros'],  # Mostrar ambas métricas en hover
         color_continuous_scale=[[0, '#F2C6A5'], [0.5, '#F28322'], [1, '#A64724']],
         projection='natural earth',
-        title='📍 Registros e Intención por País'
+        title='Registros e Intención por País'
     )
 
     fig_mapa.update_layout(
