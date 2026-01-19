@@ -90,10 +90,16 @@ st.markdown("""
     text-align: center;
     width: 100%;
 }
-/* Estilo para st.info */
-[data-testid="stAlert"] {
-    background-color: "#EBEBEB";
-    /* border: 1px solid #EBEBEB; */
+/* Estilo para st.info - fondo transparente y texto negro */
+div[data-testid="stAlert"] {
+    background-color: transparent !important;
+    border: none !important;
+}
+div[data-testid="stAlert"] > div {
+    background-color: transparent !important;
+}
+div[data-testid="stAlert"] p {
+    color: #000000 !important;
 }
 </style>
 """, unsafe_allow_html=True)
