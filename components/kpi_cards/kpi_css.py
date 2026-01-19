@@ -1,24 +1,6 @@
-"""
-Componentes de KPI Cards para Streamlit.
-"""
+BASIC_CARD_CSS = '''<div class="metric-card"><h3>{title}</h3><p>{value}</p></div>'''
 
-import streamlit as st
-
-
-def render_kpi_cards(kpis: dict):
-    """
-    Renderiza múltiples KPI cards centradas usando flexbox.
-    
-    Args:
-        kpis: Dict con {título: valor}
-    """
-    # Generar HTML de todas las cards
-    cards = []
-    for title, value in kpis.items():
-        cards.append(f'<div class="metric-card"><h3>{title}</h3><p>{value}</p></div>')
-    
-    # HTML completo con estilos inline para asegurar renderizado
-    html = f'''
+CONTAINER_CSS = '''
     <style>
     .kpi-container {{
         display: flex;
@@ -61,20 +43,5 @@ def render_kpi_cards(kpis: dict):
         white-space: nowrap;
     }}
     </style>
-    <div class="kpi-container">{" ".join(cards)}</div>
+    <div class="kpi-container">{cards_html}</div>
     '''
-    st.markdown(html, unsafe_allow_html=True)
-
-
-def render_kpi_row(kpi_data: dict) -> None:
-    """
-    Renderiza una fila de KPIs usando los datos del módulo data.
-    
-    Args:
-        kpi_data: Dict retornado por get_kpi_data()
-    """
-    if kpi_data is None or len(kpi_data.keys()) == 0:
-        return
-
-    render_kpi_cards(kpi_data)
-
