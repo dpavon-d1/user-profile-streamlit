@@ -224,7 +224,7 @@ with col_vacia:
 
     for i, row in df_sesion_historial.iterrows():
         fig_sesion_historial.add_trace(go.Bar(
-            name=row['Tipo Usuario'],
+            # name=row['Tipo Usuario'],
             x=estados,
             y=[row['Registrado'], row['Con Intención']],
             marker_color=colores[i]
@@ -234,7 +234,7 @@ with col_vacia:
         barmode='group',
         title='Según historial de sesiones',
         yaxis={'title': {'text': 'Usuarios'}},
-        xaxis={'title': {'text': 'Tipo Usuario'}},
+        # xaxis={'title': {'text': 'Tipo Usuario'}},
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
@@ -277,7 +277,7 @@ with col_vacia2:
     fig_heatmap_segmento_consumo.update_layout(
         title='Según segmento consumo',
         height=400,
-        xaxis={'title': 'Usuarios'},
+        # xaxis={'title': 'Usuarios'},
         yaxis={'title': 'Segmento Consumo', 'autorange': 'reversed'}  # Para que la primera fila quede arriba
     )
 
