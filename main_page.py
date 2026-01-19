@@ -56,7 +56,7 @@ dispositivo = st.sidebar.multiselect("Dispositivo", devices['Dispositivo'].uniqu
 
 # --- 3. KPIs PRINCIPALES CON ESTILO CARD ---
 
-# CSS para las cards
+# CSS para las cards y st.info
 st.markdown("""
 <style>
 .metric-card {
@@ -89,6 +89,14 @@ st.markdown("""
     line-height: 1;
     text-align: center;
     width: 100%;
+}
+/* Estilo para st.info */
+[data-testid="stAlert"] {
+    background-color: transparent;
+    border: none;
+}
+[data-testid="stAlert"] p {
+    color: #000000;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -192,7 +200,7 @@ with left_col:
 
 
     st.plotly_chart(fig_funnel, use_container_width=True)
-    st.info("*Recomendación: Se recomienda implementar la medición de campos del formulario para identificar puntos de fricción y definir niveles de interés gradual según el progreso del usuario.*") 
+    st.info("*Se recomienda implementar la medición de campos del formulario para identificar puntos de fricción y definir niveles de interés gradual según el progreso del usuario.*") 
 
 with right_col:
     # === MAPA DE USUARIOS POR PAÍS ===
