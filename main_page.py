@@ -640,8 +640,8 @@ df_wattson_category_all = pd.DataFrame({
 df_wattson_category = df_wattson_category_all.nlargest(15, 'Usuarios con Intención')
 
 # Colores para las métricas
-color_intencion = '#F28322'  # Naranja
-color_registrados = '#2450A6'  # Azul
+color_intencion = '#2450A6'  # Azul 
+color_registrados = '#F28322'  # Naranja
 
 # Crear gráfico de barras agrupadas
 fig_barras_wattson_category = go.Figure()
