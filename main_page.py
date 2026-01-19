@@ -195,7 +195,7 @@ with col_grafico:
     fig_device.update_layout(
         barmode='group',
         title='Según Dispositivo y Estado',
-        yaxis={'title': {'text': 'Usuarios'}},
+        # yaxis={'title': {'text': 'Usuarios'}},
         # xaxis={'title': {'text': 'Estado Usuario'}},
         legend={
             'orientation': 'h',
@@ -233,7 +233,7 @@ with col_vacia:
     fig_sesion_historial.update_layout(
         barmode='group',
         title='Según historial de sesiones',
-        yaxis={'title': {'text': 'Usuarios'}},
+        # yaxis={'title': {'text': 'Usuarios'}},
         # xaxis={'title': {'text': 'Tipo Usuario'}},
         legend={
             'orientation': 'h',
@@ -278,7 +278,7 @@ with col_vacia2:
         title='Según segmento consumo',
         height=400,
         # xaxis={'title': 'Usuarios'},
-        yaxis={'title': 'Segmento Consumo', 'autorange': 'reversed'}  # Para que la primera fila quede arriba
+        # yaxis={'title': 'Segmento Consumo', 'autorange': 'reversed'}  # Para que la primera fila quede arriba
     )
 
     st.plotly_chart(fig_heatmap_segmento_consumo, use_container_width=True)
