@@ -100,6 +100,7 @@ div[data-testid="stAlert"] > div {
 }
 div[data-testid="stAlert"] p {
     color: #000000 !important;
+    font-size: 10px !important;
 }
 </style>
 """, unsafe_allow_html=True)
