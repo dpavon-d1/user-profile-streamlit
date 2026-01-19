@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Main page content
-st.markdown("# Main page")
+# st.markdown("# Main page")
 st.sidebar.markdown("# Main page")
 
 
@@ -16,7 +16,7 @@ st.set_page_config(page_title="Infobae - Comportamiento & Conversión", layout="
 # Logo centrado
 col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
-    st.image("icono.png", width=150)
+    st.image("icono.png", width=200)
 
 st.markdown("<h1 style='text-align: center;'>Comportamiento & Conversión a Registro</h1>", unsafe_allow_html=True)
 st.markdown("---")
