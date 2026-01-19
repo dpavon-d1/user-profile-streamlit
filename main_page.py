@@ -195,10 +195,8 @@ with col_grafico:
     fig_device.update_layout(
         barmode='group',
         title='Según Dispositivo y Estado',
-        xaxis={
-            'tickangle': 0,
-            'tickfont': {'size': 12}
-        },
+        # yaxis={'title': {'text': 'Usuarios'}},
+        # xaxis={'title': {'text': 'Estado Usuario'}},
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
@@ -206,10 +204,7 @@ with col_grafico:
             'xanchor': 'right',
             'x': 1
         },
-        height=400,
-        bargap=0.3,  # Espacio entre grupos para centrar
-        uniformtext_minsize=8,
-        uniformtext_mode='hide'
+        height=400
     )
     st.plotly_chart(fig_device, use_container_width=True)
 
@@ -240,12 +235,8 @@ with col_vacia:
     fig_sesion_historial.update_layout(
         barmode='group',
         title='Según historial de sesiones',
-        xaxis={
-            'tickangle': 0,
-            'tickfont': {'size': 12}
-        },
-        bargap=0.3,
-        bargroupgap=0.05,
+        bargap=0.5,
+        bargroupgap=0.02,
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
@@ -253,7 +244,7 @@ with col_vacia:
             'xanchor': 'right',
             'x': 1
         },
-        height=400
+        height=400  # Misma altura que los otros gráficos
     )
 
 
