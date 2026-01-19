@@ -505,7 +505,7 @@ fig_combinado.add_trace(go.Scatter(
     x=df_evolucion['Fecha'],
     y=df_evolucion['Intención de Registro'],
     mode='lines+markers',
-    name='Intención de Registro',
+    name='Intención',
     line=dict(color='#F28322', width=2),
     marker=dict(size=5)
 ))
