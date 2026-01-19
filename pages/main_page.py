@@ -65,8 +65,8 @@ ALL_COUNTRIES = ["Argentina", "México", "España", "Colombia"]
 filters = render_sidebar_filters(
     devices=ALL_DEVICES,
     countries=ALL_COUNTRIES,
-    show_top_n=True,
-    show_sort_by=True
+    show_top_n=False,
+    show_sort_by=False
 )
 
 # Extraer valores de filtros
