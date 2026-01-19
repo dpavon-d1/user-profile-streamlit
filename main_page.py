@@ -54,33 +54,36 @@ dispositivo = st.sidebar.multiselect("Dispositivo", devices['Dispositivo'].uniqu
 # CSS para las cards
 st.markdown("""
 <style>
-
 .metric-card {
     background-color: #ffffff;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 8px;
+    padding: 10px 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border: 3px solid #F28322;
+    border: 2px solid #F28322;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin: 5px;
 }
 .metric-card h3 {
     color: #666666;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin: 0 0 4px 0;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     text-align: center;
-    justify-content: center;
+    width: 100%;
 }
 .metric-card p {
     color: #1a1a1a;
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0;
+    line-height: 1;
     text-align: center;
-    justify-content: center;
+    width: 100%;
 }
 </style>
 """, unsafe_allow_html=True)
