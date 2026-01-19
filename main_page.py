@@ -154,7 +154,7 @@ with right_col:
             showsubunits=False,
             framewidth=0
         ),
-        height=700,
+        height=500,
         margin=dict(l=0, r=0, t=50, b=0)
     )
     st.plotly_chart(fig_mapa, use_container_width=True, config={
