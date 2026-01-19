@@ -225,6 +225,9 @@ render_chart_container(fig_concepts)
 
 # Categorías Wattson
 categories_df = get_wattson_category_data()
+categories_df["totals"] = categories_df["Usuarios con Intención"] + categories_df["Usuarios Registrados"]
+categories_df = categories_df.sort_values(by='totals', ascending=False)
+categories_df.drop(columns=['totals'], inplace=True)
 fig_categories = create_grouped_bar_chart(
     df=categories_df,
     x_col='Categoría Wattson',
