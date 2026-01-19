@@ -312,7 +312,7 @@ def get_concepts_data() -> pd.DataFrame:
     Returns:
         DataFrame con Concepto, Usuarios con Intención, Usuarios Registrados
     """
-    df_concepts = pd.DataFrame({
+    return pd.DataFrame({
         'Concepto': [
             'Inflación', 'Dólar', 'Elecciones', 'COVID-19', 'Jubilaciones',
             'Tarifas', 'Combustibles', 'Alquileres', 'Empleo', 'Impuestos',
@@ -333,7 +333,7 @@ def get_concepts_data() -> pd.DataFrame:
         ]
     })
 
-    return df_concepts.sort_values(by='Usuarios con Intención', ascending=False)
+    
 
 
 # ============================================================
@@ -347,7 +347,7 @@ def get_wattson_category_data() -> pd.DataFrame:
     Returns:
         DataFrame con Categoría Wattson, Usuarios con Intención, Usuarios Registrados
     """
-    df_categories = pd.DataFrame({
+    return pd.DataFrame({
         'Categoría Wattson': [
             'Economía', 'Salud', 'Educación', 'Cultura', 'Deportes', 
             'Política', 'Ciencia', 'Tecnología', 'Entretenimiento', 'Sociedad',
@@ -368,7 +368,7 @@ def get_wattson_category_data() -> pd.DataFrame:
         ]
     })
 
-    return df_categories.sort_values(by='Usuarios con Intención', ascending=False)
+
 # ============================================================
 # DATOS DE KPIs
 # ============================================================
