@@ -256,7 +256,7 @@ with col_vacia2:
     # Datos de ejemplo (filas = categorías, columnas = métricas)
     df_heatmap_segmento_consumo = pd.DataFrame({
         'Segmento Consumo': ['0-5 Light', '6-10 Medium', '11-20 Heavy', '21+ Super Heavy'],
-        'Usuarios Totales': [20795, 9886, 1643, 3200],
+        # 'Usuarios Totales': [20795, 9886, 1643, 3200],
         'Intención': [1507, 1127, 263, 450],
         'Registrados': [230, 192, 37, 85],
         # 'Tasa Conv %': [1.1, 1.9, 2.3, 2.7]
