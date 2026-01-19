@@ -91,7 +91,7 @@ render_kpi_row(kpi_data)
 render_section_divider()
 
 # === SECCIÓN: FUNNEL Y MAPA ===
-left_col, right_col = st.columns([1.2, 1], gap="medium")
+left_col, right_col = st.columns([1.5, 1], gap="medium")
 
 with left_col:
     render_section_title("Funnel de Registro")
