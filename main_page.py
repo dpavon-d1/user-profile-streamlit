@@ -13,10 +13,18 @@ import numpy as np
 # Configuración de la página
 st.set_page_config(page_title="Infobae - Comportamiento & Conversión", layout="wide")
 
+# CSS para centrar imagen
+st.markdown("""
+<style>
+[data-testid="stImage"] {
+    display: flex;
+    justify-content: center;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Logo centrado
-col1, col2, col3 = st.columns([1, 1, 1])
-with col2:
-    st.image("icono.png", width=200)
+st.image("icono.png", width=200)
 
 st.markdown("<h1 style='text-align: center;'>Comportamiento & Conversión a Registro</h1>", unsafe_allow_html=True)
 st.markdown("---")
