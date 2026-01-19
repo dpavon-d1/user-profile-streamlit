@@ -13,21 +13,54 @@ def render_kpi_cards(kpis: dict):
         kpis: Dict con {título: valor}
     """
     # Generar HTML de todas las cards
-    cards_html = ""
+    cards = []
     for title, value in kpis.items():
-        cards_html += f"""
-        <div class="metric-card">
-            <h3>{title}</h3>
-            <p>{value}</p>
-        </div>
-        """
+        cards.append(f'<div class="metric-card"><h3>{title}</h3><p>{value}</p></div>')
     
-    # Contenedor flex que centra todas las cards
-    html = f"""
-    <div class="kpi-container">
-        {cards_html}
-    </div>
-    """
+    # HTML completo con estilos inline para asegurar renderizado
+    html = f'''
+    <style>
+    .kpi-container {{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 16px;
+        width: 100%;
+    }}
+    .metric-card {{
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 12px 20px;
+        box-shadow: 0 4px 4px rgba(0,0,0,0.1);
+        border-left: 4px solid #F28322;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        min-width: 150px;
+    }}
+    .metric-card h3 {{
+        color: #666666;
+        font-size: 12px;
+        font-weight: 500;
+        margin: 0 0 6px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }}
+    .metric-card p {{
+        color: #1a1a1a;
+        font-size: 22px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1;
+        white-space: nowrap;
+    }}
+    </style>
+    <div class="kpi-container">{" ".join(cards)}</div>
+    '''
     st.markdown(html, unsafe_allow_html=True)
 
 
