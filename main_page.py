@@ -2,7 +2,7 @@ import streamlit as st
 
 # Main page content
 # st.markdown("# Main page")
-st.sidebar.markdown("# Main page")
+st.sidebar.markdown("# Comportamiento & Conversión a Registro")
 
 
 import pandas as pd
@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 import numpy as np
 
 # Configuración de la página
-st.set_page_config(page_title="Infobae - Comportamiento & Conversión", layout="wide")
+st.set_page_config(page_title="Infobae - Comportamiento & Conversión a Registro", layout="wide")
 
 # Logo centrado usando columnas vacías a los lados
 _, col_center, _ = st.columns([2, 1, 2])
