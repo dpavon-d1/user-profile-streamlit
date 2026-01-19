@@ -12,7 +12,7 @@ ROOT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 
 # === IMPORTS DE MÓDULOS PROPIOS ===
-from config.settings import PAGE_CONFIG, CHART_CONFIG, MAP_CONFIG, TOP_N_CONFIG
+from config.settings import CHART_CONFIG, TOP_N_CONFIG
 from styles.css import get_all_css
 from styles.colors import COLORS
 from data.mock_data import (
@@ -35,7 +35,7 @@ from charts.bar_charts import (
     create_grouped_bar_chart
 )
 from charts.line_charts import create_evolution_chart
-from charts.heatmaps import create_heatmap_table, style_dataframe_heatmap, filter_top_n
+from charts.heatmaps import create_heatmap_table, style_dataframe_heatmap
 from components.layout import (
     render_header,
     render_section_divider,
@@ -57,18 +57,34 @@ render_header(
     sidebar_text="Comportamiento & Conversión a Registro"
 )
 
-# === CARGAR DATOS ===
-funnel_data = get_funnel_data()
-devices_df = get_device_data()
-kpi_data = get_kpi_data()
+# === LISTA DE DISPOSITIVOS Y PAÍSES DISPONIBLES ===
+ALL_DEVICES = ['Mobile', 'Desktop', 'Tablet', 'Smart TV']
+ALL_COUNTRIES = ["Argentina", "México", "España", "Colombia"]
 
 # === FILTROS SIDEBAR ===
 filters = render_sidebar_filters(
-    devices=devices_df['Dispositivo'].tolist(),
-    countries=["Argentina", "México", "España", "Colombia"],
+    devices=ALL_DEVICES,
+    countries=ALL_COUNTRIES,
     show_top_n=True,
     show_sort_by=True
 )
+
+# Extraer valores de filtros
+selected_countries = filters.get('pais', ALL_COUNTRIES)
+selected_devices = filters.get('dispositivo', ALL_DEVICES)
+selected_period = filters.get('periodo', [])
+top_n = filters.get('top_n', 10)
+sort_by = filters.get('ordenar_por', 'Usuarios')
+
+# Convertir periodo a tupla si tiene valores
+date_range = tuple(selected_period) if len(selected_period) == 2 else None
+
+# === CARGAR DATOS CON FILTROS ===
+funnel_data = get_funnel_data(countries=selected_countries)
+devices_df = get_device_data(devices=selected_devices)
+kpi_data = get_kpi_data(countries=selected_countries)
+country_data = get_country_data(countries=selected_countries)
+evolution_df = get_evolution_data(date_range=date_range)
 
 # === KPIs PRINCIPALES ===
 render_kpi_row(kpi_data)
@@ -99,18 +115,21 @@ with left_col:
 with right_col:
     render_section_title("Usuarios por País")
     
-    country_data = get_country_data()
-    fig_mapa = create_choropleth_map(
-        df=country_data,
-        locations_col='ISO',
-        color_col='Registros',
-        hover_name_col='Pais',
-        hover_data_cols=['Intención', 'Registros'],
-        title='Registros e Intención por País',
-        height=CHART_CONFIG["map_height"]
-    )
-    
-    render_chart_container(fig_mapa, config=get_map_config())
+    # Mostrar mensaje si no hay países seleccionados
+    if country_data.empty:
+        st.warning("Selecciona al menos un país para ver el mapa.")
+    else:
+        fig_mapa = create_choropleth_map(
+            df=country_data,
+            locations_col='ISO',
+            color_col='Registros',
+            hover_name_col='Pais',
+            hover_data_cols=['Intención', 'Registros'],
+            title='Registros e Intención por País',
+            height=CHART_CONFIG["map_height"]
+        )
+        
+        render_chart_container(fig_mapa, config=get_map_config())
 
 # === SECCIÓN: CLASIFICACIÓN DE USUARIOS ===
 render_section_divider()
@@ -119,12 +138,15 @@ render_section_title("Clasificación de Usuarios")
 col_device, col_session, col_segment = st.columns([1, 1, 1])
 
 with col_device:
-    fig_device = create_device_bar_chart(
-        df=devices_df,
-        title='Según Dispositivo y Estado',
-        height=CHART_CONFIG["bar_height"]
-    )
-    render_chart_container(fig_device)
+    if devices_df.empty:
+        st.warning("Selecciona al menos un dispositivo.")
+    else:
+        fig_device = create_device_bar_chart(
+            df=devices_df,
+            title='Según Dispositivo y Estado',
+            height=CHART_CONFIG["bar_height"]
+        )
+        render_chart_container(fig_device)
 
 with col_session:
     session_df = get_session_history_data()
@@ -149,35 +171,38 @@ with col_segment:
 # === SECCIÓN: TABLA FUENTE/MEDIO ===
 render_section_title("Detalle por Fuente / Medio")
 
-source_df = get_source_medium_data()
-df_filtered = filter_top_n(source_df, filters['top_n'], filters['ordenar_por'])
-styled_df = style_dataframe_heatmap(df_filtered)
+# Obtener datos con filtros de top_n y ordenamiento
+source_df = get_source_medium_data(top_n=top_n, sort_by=sort_by)
+styled_df = style_dataframe_heatmap(source_df)
 
 st.dataframe(styled_df, use_container_width=True, hide_index=True)
 
 # === SECCIÓN: EVOLUCIÓN TEMPORAL ===
 render_section_title("Evolución de Usuarios: Intención vs Registro")
 
-evolution_df = get_evolution_data()
-fig_evolution_users = create_evolution_chart(
-    df=evolution_df,
-    metrics=['Intención de Registro', 'Registro'],
-    colors=[COLORS["primary"], COLORS["secondary"]],
-    title='Evolución de Usuarios: Intención vs Registro',
-    y_title='Usuarios'
-)
-render_chart_container(fig_evolution_users)
+if evolution_df.empty:
+    st.warning("No hay datos para el periodo seleccionado.")
+else:
+    fig_evolution_users = create_evolution_chart(
+        df=evolution_df,
+        metrics=['Intención de Registro', 'Registro'],
+        colors=[COLORS["primary"], COLORS["secondary"]],
+        title='Evolución de Usuarios: Intención vs Registro',
+        y_title='Usuarios'
+    )
+    render_chart_container(fig_evolution_users)
 
 render_section_title("Evolución de Sesiones: Intención vs Registro")
 
-fig_evolution_sessions = create_evolution_chart(
-    df=evolution_df,
-    metrics=['Intención de Registro', 'Registro'],
-    colors=[COLORS["primary"], COLORS["secondary"]],
-    title='Evolución de Sesiones: Intención vs Registro',
-    y_title='Sesiones'
-)
-render_chart_container(fig_evolution_sessions)
+if not evolution_df.empty:
+    fig_evolution_sessions = create_evolution_chart(
+        df=evolution_df,
+        metrics=['Intención de Registro', 'Registro'],
+        colors=[COLORS["primary"], COLORS["secondary"]],
+        title='Evolución de Sesiones: Intención vs Registro',
+        y_title='Sesiones'
+    )
+    render_chart_container(fig_evolution_sessions)
 
 # === SECCIÓN: AFINIDAD WATTSON ===
 render_section_title("Afinidad de Usuarios - Modelo Wattson")
@@ -208,4 +233,3 @@ fig_categories = create_grouped_bar_chart(
     y_title='Usuarios'
 )
 render_chart_container(fig_categories)
-
