@@ -61,6 +61,15 @@ def get_all_css():
     """Retorna todo el CSS combinado para el dashboard."""
     return f"""
 <style>
+/* === CONTENEDOR KPI CARDS === */
+.kpi-container {{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}}
+
 /* === METRIC CARDS === */
 .metric-card {{
     background-color: #ffffff;
@@ -73,6 +82,10 @@ def get_all_css():
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-bottom: 12px;
+    min-width: 150px;
+    flex: 1;
+    max-width: 200px;
 }}
 .metric-card h3 {{
     color: #666666;
@@ -121,6 +134,14 @@ def metric_card_html(title: str, value: str) -> str:
     <div class="metric-card">
         <h3>{title}</h3>
         <p>{value}</p>
+    </div>
+    """
+
+def kpi_container_html(cards_html: str) -> str:
+    """Genera HTML para el contenedor de KPI cards centrado."""
+    return f"""
+    <div class="kpi-container">
+        {cards_html}
     </div>
     """
 
