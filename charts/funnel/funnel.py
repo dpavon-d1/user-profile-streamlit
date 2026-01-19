@@ -4,16 +4,16 @@ Gráficos de funnel de conversión.
 
 import numpy as np
 import plotly.graph_objects as go
-from styles.colors import FUNNEL_COLORS, COLORS
+from .config import FUNNEL_COLORS
 
 
 def create_funnel_chart(
     etapas: list,
     valores: list,
     title: str = "Embudo de Conversión",
-    subtitle: str = "Escala logarítmica aplicada para visibilidad",
     height: int = 500,
-    use_log_scale: bool = True
+    use_log_scale: bool = True,
+    subtitle: str = None
 ) -> go.Figure:
     """
     Crea un gráfico de funnel con escala logarítmica opcional.
@@ -22,7 +22,7 @@ def create_funnel_chart(
         etapas: Lista de nombres de etapas
         valores: Lista de valores por etapa
         title: Título del gráfico
-        subtitle: Subtítulo del gráfico
+        subtitle: Subtítulo del gráfico (opcional, por defecto None)
         height: Altura en pixels
         use_log_scale: Si True, aplica escala logarítmica
         
@@ -55,11 +55,20 @@ def create_funnel_chart(
         connector={"fillcolor": "#A6C6ED", "line": {"width": 0}},
         hoverinfo="y+text"
     ))
-    
+
+    if subtitle:
+        fig.update_layout(
+            title={
+                "text": f"<b>{title}</b><br><span style='font-size:12px'>{subtitle}</span>"
+            }
+        )
+    else:
+        fig.update_layout(
+            title={
+                "text": f"<b>{title}</b>"
+            }
+        )
     fig.update_layout(
-        title={
-            "text": f"<b>{title}</b><br><span style='font-size:12px'>{subtitle}</span>"
-        },
         xaxis={
             "showticklabels": False,
             "showgrid": False,

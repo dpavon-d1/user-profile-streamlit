@@ -2,43 +2,6 @@
 Estilos CSS para componentes de Streamlit.
 """
 
-# === CSS PARA CARDS DE KPI ===
-KPI_CARD_CSS = """
-<style>
-.metric-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 10px 8px;
-    box-shadow: 0 4px 4px rgba(0,0,0,0.1);
-    border-left: 4px solid #F28322;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.metric-card h3 {
-    color: #666666;
-    font-size: 14px;
-    font-weight: 500;
-    margin: 0 0 4px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    text-align: center;
-    width: 100%;
-}
-.metric-card p {
-    color: #1a1a1a;
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-    line-height: 1;
-    text-align: center;
-    width: 100%;
-}
-</style>
-"""
-
 # === CSS PARA ST.INFO TRANSPARENTE ===
 INFO_TRANSPARENT_CSS = """
 <style>
