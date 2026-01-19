@@ -613,7 +613,7 @@ fig_combinado_sesiones.update_layout(
 
 st.plotly_chart(fig_combinado_sesiones, use_container_width=True)
 
-st.subheader("Afinidad de Usuarios por Categoría Wattson - Top 15")
+st.subheader("Afinidad de Usuarios - Modelo Wattson")
 # Datos por categoría Wattson (20 categorías para Top 15)
 df_wattson_category_all = pd.DataFrame({
     'Categoría Wattson': [
