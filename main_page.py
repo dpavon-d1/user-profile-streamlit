@@ -194,7 +194,7 @@ with col_grafico:
 
     fig_device.update_layout(
         barmode='group',
-        title='Usuarios por Dispositivo y Estado',
+        title='Según Dispositivo y Estado',
         yaxis={'title': {'text': 'Usuarios'}},
         xaxis={'title': {'text': 'Estado Usuario'}},
         legend={
@@ -247,8 +247,44 @@ with col_vacia:
 
     st.plotly_chart(fig_sesion_historial, use_container_width=True)
 
+with col_vacia2:
+    # === TABLA CON MAPA DE CALOR ===
+
+    # Datos de ejemplo (filas = categorías, columnas = métricas)
+    df_heatmap_segmento_consumo = pd.DataFrame({
+        'Segmento Consumo': ['0-5 Light', '6-10 Medium', '11-20 Heavy', '21+ Super Heavy'],
+        'Usuarios Totales': [20795, 9886, 1643, 3200],
+        'Intención': [1507, 1127, 263, 450],
+        'Registrados': [230, 192, 37, 85],
+        # 'Tasa Conv %': [1.1, 1.9, 2.3, 2.7]
+    })
+
+    # Establecer la columna Segmento Consumo como índice
+    df_heatmap_segmento_consumo = df_heatmap_segmento_consumo.set_index('Segmento Consumo')
+
+    # OPCIÓN 1: Heatmap con Plotly (gráfico interactivo)
+    fig_heatmap_segmento_consumo = go.Figure(data=go.Heatmap(
+        z=df_heatmap_segmento_consumo.values,
+        x=df_heatmap_segmento_consumo.columns,
+        y=df_heatmap_segmento_consumo.index,
+        colorscale=[[0, '#FEF0E3'], [0.5, '#F9B86C'], [1, '#F28322']],  # Escala naranja
+        text=df_heatmap_segmento_consumo.values,
+        texttemplate='%{text:,.0f}',
+        textfont={'size': 12},
+        hovertemplate='Fuente: %{y}<br>Métrica: %{x}<br>Valor: %{z:,.0f}<extra></extra>'
+    ))
+
+    fig_heatmap_segmento_consumo.update_layout(
+        title='Según segmento consumo',
+        height=400,
+        xaxis={'title': 'Usuarios'},
+        yaxis={'title': 'Segmento Consumo', 'autorange': 'reversed'}  # Para que la primera fila quede arriba
+    )
+
+    st.plotly_chart(fig_heatmap_segmento_consumo, use_container_width=True)
+
 # --- 6. TABLA DE FUENTE / MEDIO ---
-st.subheader("🌐 Detalle por Fuente / Medio")
+st.subheader("Detalle por Fuente / Medio")
 
 from matplotlib.colors import LinearSegmentedColormap
 
