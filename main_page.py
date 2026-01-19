@@ -49,13 +49,79 @@ periodo = st.sidebar.date_input("Selecciona un periodo", [])
 pais = st.sidebar.multiselect("Pais", ["Argentina", "México", "España", "Colombia"], default="Argentina")
 dispositivo = st.sidebar.multiselect("Dispositivo", devices['Dispositivo'].unique(), default=devices['Dispositivo'].unique())
 
-# --- 3. KPIs PRINCIPALES ---
+# --- 3. KPIs PRINCIPALES CON ESTILO CARD ---
+
+# CSS para las cards
+st.markdown("""
+<style>
+.metric-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-top: 4px solid #F28322;
+    text-align: center;
+    margin: 5px;
+}
+.metric-card h3 {
+    color: #666666;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.metric-card p {
+    color: #1a1a1a;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Cards con métricas originales
 col1, col2, col3, col4, col5 = st.columns(5)
-col1.metric("Sesiones con Intención", "6.650") 
-col2.metric("% Rebote", "4,7%", "-0.5%") 
-col3.metric("Duración Media", "00:23:10") 
-col4.metric("Interacción Media", "00:05:42") 
-col5.metric("Tasa de Registro", "16,6%") 
+
+with col1:
+    st.markdown("""
+    <div class="metric-card">
+        <h3>Sesiones con Intención</h3>
+        <p>6.650</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="metric-card">
+        <h3>% Rebote</h3>
+        <p>4,7%</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div class="metric-card">
+        <h3>Duración Media</h3>
+        <p>00:23:10</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown("""
+    <div class="metric-card">
+        <h3>Interacción Media</h3>
+        <p>00:05:42</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col5:
+    st.markdown("""
+    <div class="metric-card">
+        <h3>Tasa de Registro</h3>
+        <p>16,6%</p>
+    </div>
+    """, unsafe_allow_html=True) 
 
 st.markdown("---")
 
