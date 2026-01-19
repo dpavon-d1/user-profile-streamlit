@@ -526,8 +526,8 @@ fig_combinado.update_layout(
     yaxis_title='Usuarios',
     height=450,
     hovermode='x unified',
-    plot_bgcolor='#f5f5f5',
-    # paper_bgcolor='#f5f5f5',
+    plot_bgcolor='#ffffff',
+    paper_bgcolor='#ffffff',
     legend=dict(
         orientation='h',
         yanchor='bottom',
@@ -539,6 +539,11 @@ fig_combinado.update_layout(
         tickformat='%d/%m',
         dtick='D2',
         showgrid=False
+    ),
+     yaxis=dict(
+        showgrid=True,
+        gridcolor='#e0e0e0',
+        gridwidth=1
     )
 )
 
