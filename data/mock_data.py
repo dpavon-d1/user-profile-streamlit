@@ -390,7 +390,11 @@ def get_kpi_data(countries: List[str] = None) -> dict:
         'pct_rebote': 4.7,
         'duracion_media': '00:23:10',
         'interaccion_media': '00:05:42',
-        'tasa_registro': 16.6
+        'tasa_registro': 16.6,
+        'usuarios_con_intencion': 10000,
+        'usuarios_registrados': 5000,
+        'usuarios_totales': 15000,
+        'usuarios_no_registrados': 5000,
     }
     
     # Mock: ajustar según cantidad de países seleccionados
@@ -405,5 +409,9 @@ def get_kpi_data(countries: List[str] = None) -> dict:
         '% Rebote': f"{kpis['pct_rebote']:.1f}%".replace('.', ','),
         'Duración Media': kpis['duracion_media'],
         'Interacción Media': kpis['interaccion_media'],
-        'Tasa de Registro': f"{kpis['tasa_registro']:.1f}%".replace('.', ',')
+        'Tasa de Registro': f"{kpis['tasa_registro']:.1f}%".replace('.', ','),
+        'Usuarios con Intención': f"{kpis['usuarios_con_intencion']:,}".replace(',', '.'),
+        'Usuarios Registrados': f"{kpis['usuarios_registrados']:,}".replace(',', '.'),
+        'Usuarios Totales': f"{kpis['usuarios_totales']:,}".replace(',', '.'),
+        'Usuarios No Registrados': f"{kpis['usuarios_no_registrados']:,}".replace(',', '.'),
     }
