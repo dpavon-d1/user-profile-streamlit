@@ -54,6 +54,7 @@ dispositivo = st.sidebar.multiselect("Dispositivo", devices['Dispositivo'].uniqu
 # CSS para las cards
 st.markdown("""
 <style>
+
 .metric-card {
     background-color: #ffffff;
     border-radius: 10px;
@@ -70,12 +71,16 @@ st.markdown("""
     margin-bottom: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    text-align: center;
+    justify-content: center;
 }
 .metric-card p {
     color: #1a1a1a;
     font-size: 32px;
     font-weight: 700;
     margin: 0;
+    text-align: center;
+    justify-content: center;
 }
 </style>
 """, unsafe_allow_html=True)
