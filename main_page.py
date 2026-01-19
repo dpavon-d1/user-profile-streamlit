@@ -612,3 +612,79 @@ fig_combinado_sesiones.update_layout(
 
 
 st.plotly_chart(fig_combinado_sesiones, use_container_width=True)
+
+st.subheader("Afinidad de Usuarios por Categoría Wattson - Top 15")
+# Datos por categoría Wattson (20 categorías para Top 15)
+df_wattson_category_all = pd.DataFrame({
+    'Categoría Wattson': [
+        'Economía', 'Salud', 'Educación', 'Cultura', 'Deportes', 
+        'Política', 'Ciencia', 'Tecnología', 'Entretenimiento', 'Sociedad',
+        'Internacional', 'Nacional', 'Opinión', 'Lifestyle', 'Autos',
+        'Turismo', 'Gastronomía', 'Moda', 'Celebridades', 'Gaming'
+    ],
+    'Usuarios con Intención': [
+        1850, 1420, 980, 650, 2100, 
+        1680, 350, 1280, 1560, 890,
+        1720, 2340, 1150, 760, 480,
+        540, 320, 410, 1050, 920
+    ],
+    'Usuarios Registrados': [
+        420, 310, 180, 95, 520, 
+        380, 50, 300, 360, 145,
+        410, 580, 280, 190, 65,
+        85, 45, 60, 260, 210
+    ]
+})
+
+# Top 15 ordenado por Usuarios con Intención
+df_wattson_category = df_wattson_category_all.nlargest(15, 'Usuarios con Intención')
+
+# Colores para las métricas
+color_intencion = '#F28322'  # Naranja
+color_registrados = '#2450A6'  # Azul
+
+# Crear gráfico de barras agrupadas
+fig_barras_wattson_category = go.Figure()
+
+# Barras de Usuarios con Intención
+fig_barras_wattson_category.add_trace(go.Bar(
+    name='Usuarios con Intención',
+    x=df_wattson_category['Categoría Wattson'],
+    y=df_wattson_category['Usuarios con Intención'],
+    marker_color=color_intencion
+))
+
+# Barras de Usuarios Registrados
+fig_barras_wattson_category.add_trace(go.Bar(
+    name='Usuarios Registrados',
+    x=df_wattson_category['Categoría Wattson'],
+    y=df_wattson_category['Usuarios Registrados'],
+    marker_color=color_registrados
+))
+
+fig_barras_wattson_category.update_layout(
+    title='Usuarios por Categoría Wattson',
+    xaxis_title='Categoría Wattson',
+    yaxis_title='Usuarios',
+    barmode='group',
+    height=450,
+    plot_bgcolor='#ffffff',
+    paper_bgcolor='#ffffff',
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='center',
+        x=0.5
+    ),
+    xaxis=dict(
+        showgrid=False
+    ),
+    yaxis=dict(
+        showgrid=True,
+        gridcolor='#e0e0e0',
+        gridwidth=1
+    )
+)
+
+st.plotly_chart(fig_barras_wattson_category, use_container_width=True)
