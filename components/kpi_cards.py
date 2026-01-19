@@ -32,20 +32,16 @@ def render_kpi_cards(kpis: dict, columns: int = 5):
             render_single_kpi(title, value)
 
 
-def render_kpi_row(kpi_data: dict):
+def render_kpi_row(kpi_data: dict) -> None:
     """
     Renderiza una fila de KPIs usando los datos del módulo data.
     
     Args:
         kpi_data: Dict retornado por get_kpi_data()
     """
-    kpis = {
-        'Sesiones con Intención': kpi_data['sesiones_intencion'],
-        '% Rebote': kpi_data['pct_rebote'],
-        'Duración Media': kpi_data['duracion_media'],
-        'Interacción Media': kpi_data['interaccion_media'],
-        'Tasa de Registro': kpi_data['tasa_registro']
-    }
-    
-    render_kpi_cards(kpis, columns=5)
+
+    if kpi_data is None or len(kpi_data.keys()) == 0:
+        return
+
+    render_kpi_cards(kpi_data, columns=5)
 

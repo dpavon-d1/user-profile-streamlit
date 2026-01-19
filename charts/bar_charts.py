@@ -14,7 +14,8 @@ def create_device_bar_chart(
     intention_col: str = 'Con Intención',
     title: str = 'Según Dispositivo y Estado',
     height: int = 400,
-    colors: list = None
+    colors: list = None,
+    barmode: str = 'group'
 ) -> go.Figure:
     """
     Crea un gráfico de barras agrupadas por dispositivo.
@@ -123,7 +124,8 @@ def create_grouped_bar_chart(
     x_title: str = '',
     y_title: str = 'Usuarios',
     height: int = 450,
-    rotate_labels: bool = False
+    rotate_labels: bool = False,
+    barmode: str = 'group'
 ) -> go.Figure:
     """
     Crea un gráfico de barras agrupadas genérico.
@@ -172,7 +174,7 @@ def create_grouped_bar_chart(
             "gridcolor": COLORS["grid"],
             "gridwidth": 1
         },
-        barmode='group',
+        barmode=barmode,
         height=height,
         plot_bgcolor=COLORS["background"],
         paper_bgcolor=COLORS["background"],

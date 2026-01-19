@@ -215,7 +215,8 @@ fig_concepts = create_grouped_bar_chart(
     title='Conceptos - Usuarios con Intención vs Registrados',
     x_title='Concepto',
     y_title='Usuarios',
-    rotate_labels=True
+    rotate_labels=True,
+    barmode='stack'
 )
 render_chart_container(fig_concepts)
 
@@ -228,6 +229,7 @@ fig_categories = create_grouped_bar_chart(
     colors=[COLORS["secondary"], COLORS["primary"]],
     title='Usuarios por Categoría Wattson',
     x_title='Categoría',
-    y_title='Usuarios'
+    y_title='Usuarios',
+    barmode='stack'
 )
 render_chart_container(fig_categories)
