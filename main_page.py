@@ -742,7 +742,7 @@ fig_barras_wattson_category.add_trace(go.Bar(
 
 fig_barras_wattson_category.update_layout(
     title='Usuarios por Categoría Wattson',
-    xaxis_title='Categoría Wattson',
+    xaxis_title='Categoría',
     yaxis_title='Usuarios',
     barmode='group',
     height=450,
