@@ -19,6 +19,8 @@ st.markdown("""
 [data-testid="stImage"] {
     display: flex;
     justify-content: center;
+    text-align: center;
+    margin: 0 auto;
 }
 </style>
 """, unsafe_allow_html=True)
