@@ -61,15 +61,6 @@ def get_all_css():
     """Retorna todo el CSS combinado para el dashboard."""
     return f"""
 <style>
-/* === CONTENEDOR KPI CARDS === */
-.kpi-container {{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin-bottom: 16px;
-}}
-
 /* === METRIC CARDS === */
 .metric-card {{
     background-color: #ffffff;
@@ -77,33 +68,29 @@ def get_all_css():
     padding: 12px 16px;
     box-shadow: 0 4px 4px rgba(0,0,0,0.1);
     border-left: 4px solid #F28322;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     text-align: center;
     margin-bottom: 12px;
-    width: fit-content;
-    min-width: 100%;
 }}
 .metric-card h3 {{
     color: #666666;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     margin: 0 0 6px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-align: center;
-    white-space: nowrap;
 }}
 .metric-card p {{
     color: #1a1a1a;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0;
     line-height: 1;
     text-align: center;
-    white-space: nowrap;
 }}
 
 /* === ST.INFO TRANSPARENTE === */
