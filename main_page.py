@@ -614,6 +614,84 @@ fig_combinado_sesiones.update_layout(
 st.plotly_chart(fig_combinado_sesiones, use_container_width=True)
 
 st.subheader("Afinidad de Usuarios - Modelo Wattson")
+
+# Datos por Concepto (20 conceptos para Top 15)
+df_conceptos_all = pd.DataFrame({
+    'Concepto': [
+        'Inflación', 'Dólar', 'Elecciones', 'COVID-19', 'Jubilaciones',
+        'Tarifas', 'Combustibles', 'Alquileres', 'Empleo', 'Impuestos',
+        'Educación Pública', 'Salud Pública', 'Seguridad', 'Transporte', 'Clima',
+        'Fútbol', 'Tenis', 'Cine', 'Música', 'Series'
+    ],
+    'Usuarios con Intención': [
+        2450, 2180, 1950, 1720, 1580,
+        1420, 1350, 1280, 1150, 1080,
+        980, 920, 850, 780, 720,
+        1890, 650, 580, 540, 490
+    ],
+    'Usuarios Registrados': [
+        620, 540, 480, 410, 380,
+        340, 320, 300, 280, 260,
+        230, 210, 190, 170, 150,
+        450, 130, 120, 110, 95
+    ]
+})
+
+# Top 15 ordenado por Usuarios con Intención
+df_conceptos = df_conceptos_all.nlargest(15, 'Usuarios con Intención')
+
+# Colores para las métricas
+color_intencion = '#2450A6'  # Naranja
+color_registrados = '#F28322'  # Azul
+
+# Crear gráfico de barras agrupadas
+fig_barras_conceptos = go.Figure()
+
+# Barras de Usuarios con Intención
+fig_barras_conceptos.add_trace(go.Bar(
+    name='Usuarios con Intención',
+    x=df_conceptos['Concepto'],
+    y=df_conceptos['Usuarios con Intención'],
+    marker_color=color_intencion
+))
+
+# Barras de Usuarios Registrados
+fig_barras_conceptos.add_trace(go.Bar(
+    name='Usuarios Registrados',
+    x=df_conceptos['Concepto'],
+    y=df_conceptos['Usuarios Registrados'],
+    marker_color=color_registrados
+))
+
+fig_barras_conceptos.update_layout(
+    title='Top 15 Conceptos - Usuarios con Intención vs Registrados',
+    xaxis_title='Concepto',
+    yaxis_title='Usuarios',
+    barmode='group',
+    height=450,
+    plot_bgcolor='#ffffff',
+    paper_bgcolor='#ffffff',
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='center',
+        x=0.5
+    ),
+    xaxis=dict(
+        showgrid=False,
+        tickangle=-45  # Rotar etiquetas para mejor lectura
+    ),
+    yaxis=dict(
+        showgrid=True,
+        gridcolor='#e0e0e0',
+        gridwidth=1
+    )
+)
+
+st.plotly_chart(fig_barras_conceptos, use_container_width=True)
+
+
 # Datos por categoría Wattson (20 categorías para Top 15)
 df_wattson_category_all = pd.DataFrame({
     'Categoría Wattson': [
@@ -688,3 +766,5 @@ fig_barras_wattson_category.update_layout(
 )
 
 st.plotly_chart(fig_barras_wattson_category, use_container_width=True)
+
+
