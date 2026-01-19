@@ -121,30 +121,31 @@ with right_col:
     # --- 5. Datos mock por país ---
     paises_data = pd.DataFrame({
         'Pais': ['Argentina', 'México', 'España', 'Colombia', 'Chile', 'Perú'],
-        'ISO': ['ARG', 'MEX', 'ESP', 'COL', 'CHL', 'PER'],  # Códigos ISO para el mapa
-        'Usuarios': [15000, 8500, 4200, 3100, 2800, 1900],
+        'ISO': ['ARG', 'MEX', 'ESP', 'COL', 'CHL', 'PER'],
+        'Intención': [1507, 1127, 263, 450, 380, 290],
         'Registros': [2500, 1200, 680, 450, 380, 290]
     })
 
-    # Mapa Choropleth (países coloreados por métrica)
+    # Mapa Choropleth (países coloreados por Registros)
     fig_mapa = px.choropleth(
         paises_data,
-        locations='ISO',               # Columna con códigos de país
-        color='Usuarios',              # Métrica para colorear
-        hover_name='Pais',             # Nombre al pasar mouse
-        hover_data=['Registros'],      # Datos adicionales en hover
-        color_continuous_scale=[[0, '#4E8ACF'], [0.5, '#1565C0'], [1, '#2450A6']]  ,  # Escala de colores
-        projection='natural earth',    # Tipo de proyección
+        locations='ISO',
+        color='Registros',             # Colorear por Registros
+        hover_name='Pais',
+        hover_data=['Intención', 'Registros'],  # Mostrar ambas métricas en hover
+        color_continuous_scale=[[0, '#F2C6A5'], [0.5, '#F28322'], [1, '#A64724']],
+        projection='natural earth',
+        title='📍 Registros e Intención por País'
     )
 
     fig_mapa.update_layout(
         geo=dict(
             showframe=False,
-            showcoastlines=False,       # Sin líneas de costa
+            showcoastlines=False,       # Sin líneas de costa negras
             showland=True,
             landcolor='#f5f5f5',
             showcountries=True,
-            countrycolor='#cccccc',     # Gris claro para bordes de países
+            countrycolor='#cccccc',     # Gris claro para bordes
             countrywidth=0.5,           # Línea fina
             showlakes=False,
             showrivers=False,
@@ -153,10 +154,9 @@ with right_col:
             showsubunits=False,
             framewidth=0
         ),
-        height=500,
+        height=700,
         margin=dict(l=0, r=0, t=50, b=0)
     )
-
     st.plotly_chart(fig_mapa, use_container_width=True, config={
         'scrollZoom': False,
         'doubleClick': False,
@@ -210,14 +210,15 @@ with col_grafico:
 
 with col_vacia:
     df_sesion_historial = pd.DataFrame({
-    'Tipo Usuario': ['Recurrente', 'Nuevo'],
-    'Registrado': [20,56],
-    'Con Intención': [14,89]
+        'Tipo Usuario': ['Recurrente', 'Nuevo'],
+        'Registrado': [20,56],
+        'Con Intención': [14,89]
     })
 
     # Colores por dispositivo
     colores = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
-    estados = ['Recurrente', 'Nuevo']
+    estados = ['Registrado', 'Con Intención']
+    
 
     # Crear barras dinámicamente desde el DataFrame
     fig_sesion_historial = go.Figure()
@@ -227,23 +228,24 @@ with col_vacia:
             name=row['Tipo Usuario'],
             x=estados,
             y=[row['Registrado'], row['Con Intención']],
-            marker_color=colores[i]
+            marker_color=colores[i],
+            width=0.25  # Barras más finas
         ))
 
     fig_sesion_historial.update_layout(
         barmode='group',
         title='Según historial de sesiones',
-        # yaxis={'title': {'text': 'Usuarios'}},
-        # xaxis={'title': {'text': 'Tipo Usuario'}},
+        bargap=0.5,        # Más espacio entre grupos (centra las barras)
+        bargroupgap=0.02,  # Barras casi pegadas
         legend={
             'orientation': 'h',
             'yanchor': 'bottom',
             'y': 1.02,
             'xanchor': 'right',
             'x': 1
-        },
-        height=400
+        }
     )
+
 
     st.plotly_chart(fig_sesion_historial, use_container_width=True)
 
