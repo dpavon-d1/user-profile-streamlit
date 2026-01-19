@@ -245,18 +245,14 @@ def get_segment_data() -> pd.DataFrame:
 # DATOS POR FUENTE / MEDIO
 # ============================================================
 
-def get_source_medium_data(top_n: int = None, sort_by: str = 'Usuarios') -> pd.DataFrame:
+def get_source_medium_data() -> pd.DataFrame:
     """
     Retorna datos por fuente/medio de tráfico.
-    
-    Args:
-        top_n: Número de registros top a retornar
-        sort_by: Columna por la cual ordenar
     
     Returns:
         DataFrame con Fuente / Medio, Usuarios, Intención de Registro, Registrados
     """
-    df = pd.DataFrame({
+    return pd.DataFrame({
         'Fuente / Medio': [
             '(direct) / (none)',
             'google / organic',
@@ -303,28 +299,20 @@ def get_source_medium_data(top_n: int = None, sort_by: str = 'Usuarios') -> pd.D
             89, 45, 12, 23, 8, 8
         ]
     })
-    
-    if top_n:
-        df = filter_top_n(df, top_n, sort_by)
-    
-    return df
 
 
 # ============================================================
 # DATOS POR CONCEPTO (WATTSON)
 # ============================================================
 
-def get_concepts_data(top_n: int = 15) -> pd.DataFrame:
+def get_concepts_data() -> pd.DataFrame:
     """
     Retorna datos por concepto del modelo Wattson.
-    
-    Args:
-        top_n: Número de conceptos top a retornar
         
     Returns:
         DataFrame con Concepto, Usuarios con Intención, Usuarios Registrados
     """
-    df_all = pd.DataFrame({
+    return pd.DataFrame({
         'Concepto': [
             'Inflación', 'Dólar', 'Elecciones', 'COVID-19', 'Jubilaciones',
             'Tarifas', 'Combustibles', 'Alquileres', 'Empleo', 'Impuestos',
@@ -344,25 +332,20 @@ def get_concepts_data(top_n: int = 15) -> pd.DataFrame:
             450, 130, 120, 110, 95
         ]
     })
-    
-    return df_all.nlargest(top_n, 'Usuarios con Intención')
 
 
 # ============================================================
 # DATOS POR CATEGORÍA WATTSON
 # ============================================================
 
-def get_wattson_category_data(top_n: int = 15) -> pd.DataFrame:
+def get_wattson_category_data() -> pd.DataFrame:
     """
     Retorna datos por categoría del modelo Wattson.
-    
-    Args:
-        top_n: Número de categorías top a retornar
         
     Returns:
         DataFrame con Categoría Wattson, Usuarios con Intención, Usuarios Registrados
     """
-    df_all = pd.DataFrame({
+    return pd.DataFrame({
         'Categoría Wattson': [
             'Economía', 'Salud', 'Educación', 'Cultura', 'Deportes', 
             'Política', 'Ciencia', 'Tecnología', 'Entretenimiento', 'Sociedad',
@@ -382,8 +365,6 @@ def get_wattson_category_data(top_n: int = 15) -> pd.DataFrame:
             85, 45, 60, 260, 210
         ]
     })
-    
-    return df_all.nlargest(top_n, 'Usuarios con Intención')
 
 
 # ============================================================

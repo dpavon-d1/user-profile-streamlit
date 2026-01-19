@@ -12,7 +12,7 @@ ROOT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 
 # === IMPORTS DE MÓDULOS PROPIOS ===
-from config.settings import CHART_CONFIG, TOP_N_CONFIG
+from config.settings import CHART_CONFIG
 from styles.css import get_all_css
 from styles.colors import COLORS
 from data.mock_data import (
@@ -73,8 +73,7 @@ filters = render_sidebar_filters(
 selected_countries = filters.get('pais', ALL_COUNTRIES)
 selected_devices = filters.get('dispositivo', ALL_DEVICES)
 selected_period = filters.get('periodo', [])
-top_n = filters.get('top_n', 10)
-sort_by = filters.get('ordenar_por', 'Usuarios')
+
 
 # Convertir periodo a tupla si tiene valores
 date_range = tuple(selected_period) if len(selected_period) == 2 else None
@@ -171,8 +170,7 @@ with col_segment:
 # === SECCIÓN: TABLA FUENTE/MEDIO ===
 render_section_title("Detalle por Fuente / Medio")
 
-# Obtener datos con filtros de top_n y ordenamiento
-source_df = get_source_medium_data(top_n=top_n, sort_by=sort_by)
+source_df = get_source_medium_data()
 styled_df = style_dataframe_heatmap(source_df)
 
 st.dataframe(styled_df, use_container_width=True, hide_index=True)
@@ -207,22 +205,22 @@ if not evolution_df.empty:
 # === SECCIÓN: AFINIDAD WATTSON ===
 render_section_title("Afinidad de Usuarios - Modelo Wattson")
 
-# Top 15 Conceptos
-concepts_df = get_concepts_data(top_n=TOP_N_CONFIG["conceptos"])
+# Conceptos
+concepts_df = get_concepts_data()
 fig_concepts = create_grouped_bar_chart(
     df=concepts_df,
     x_col='Concepto',
     y_cols=['Usuarios con Intención', 'Usuarios Registrados'],
     colors=[COLORS["secondary"], COLORS["primary"]],
-    title='Top 15 Conceptos - Usuarios con Intención vs Registrados',
+    title='Conceptos - Usuarios con Intención vs Registrados',
     x_title='Concepto',
     y_title='Usuarios',
     rotate_labels=True
 )
 render_chart_container(fig_concepts)
 
-# Top 15 Categorías Wattson
-categories_df = get_wattson_category_data(top_n=TOP_N_CONFIG["categorias"])
+# Categorías Wattson
+categories_df = get_wattson_category_data()
 fig_categories = create_grouped_bar_chart(
     df=categories_df,
     x_col='Categoría Wattson',
