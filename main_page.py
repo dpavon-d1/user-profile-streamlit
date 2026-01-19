@@ -192,7 +192,7 @@ with left_col:
 
 
     st.plotly_chart(fig_funnel, use_container_width=True)
-    st.info("**Recomendación:** Implementar medición de campos para identificar puntos de fricción.") 
+    st.info("*Recomendación: Se recomienda implementar la medición de campos del formulario para identificar puntos de fricción y definir niveles de interés gradual según el progreso del usuario.*") 
 
 with right_col:
     # === MAPA DE USUARIOS POR PAÍS ===
