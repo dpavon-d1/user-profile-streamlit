@@ -74,7 +74,10 @@ def create_funnel_chart(
             "showgrid": False,
             "zeroline": False
         },
-        margin=dict(l=200),
+        yaxis={
+            "tickfont": {"size": 11}  # Reducir tamaño de fuente de etiquetas
+        },
+        margin=dict(l=120, r=20, t=60, b=20),  # Márgenes más compactos
         height=height
     )
     
