@@ -312,7 +312,7 @@ def get_concepts_data() -> pd.DataFrame:
     Returns:
         DataFrame con Concepto, Usuarios con Intención, Usuarios Registrados
     """
-    return pd.DataFrame({
+    df_concepts = pd.DataFrame({
         'Concepto': [
             'Inflación', 'Dólar', 'Elecciones', 'COVID-19', 'Jubilaciones',
             'Tarifas', 'Combustibles', 'Alquileres', 'Empleo', 'Impuestos',
@@ -333,6 +333,8 @@ def get_concepts_data() -> pd.DataFrame:
         ]
     })
 
+    return df_concepts.sort_values(by='Usuarios con Intención', ascending=False)
+
 
 # ============================================================
 # DATOS POR CATEGORÍA WATTSON
@@ -345,7 +347,7 @@ def get_wattson_category_data() -> pd.DataFrame:
     Returns:
         DataFrame con Categoría Wattson, Usuarios con Intención, Usuarios Registrados
     """
-    return pd.DataFrame({
+    df_categories = pd.DataFrame({
         'Categoría Wattson': [
             'Economía', 'Salud', 'Educación', 'Cultura', 'Deportes', 
             'Política', 'Ciencia', 'Tecnología', 'Entretenimiento', 'Sociedad',
@@ -366,7 +368,7 @@ def get_wattson_category_data() -> pd.DataFrame:
         ]
     })
 
-
+    return df_categories.sort_values(by='Usuarios con Intención', ascending=False)
 # ============================================================
 # DATOS DE KPIs
 # ============================================================
@@ -398,9 +400,9 @@ def get_kpi_data(countries: List[str] = None) -> dict:
     
     # Formatear para display
     return {
-        'sesiones_intencion': f"{kpis['sesiones_intencion']:,}".replace(',', '.'),
-        'pct_rebote': f"{kpis['pct_rebote']:.1f}%".replace('.', ','),
-        'duracion_media': kpis['duracion_media'],
-        'interaccion_media': kpis['interaccion_media'],
-        'tasa_registro': f"{kpis['tasa_registro']:.1f}%".replace('.', ',')
+        'Sesiones con Intención': f"{kpis['sesiones_intencion']:,}".replace(',', '.'),
+        '% Rebote': f"{kpis['pct_rebote']:.1f}%".replace('.', ','),
+        'Duración Media': kpis['duracion_media'],
+        'Interacción Media': kpis['interaccion_media'],
+        'Tasa de Registro': f"{kpis['tasa_registro']:.1f}%".replace('.', ',')
     }
