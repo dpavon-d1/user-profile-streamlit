@@ -477,3 +477,69 @@ df_top = df_custom.nlargest(top_n, ordenar_por)
 
 # Mostrar
 st.dataframe(styled_custom, use_container_width=True, hide_index=True)
+
+
+
+
+# === GRÁFICO COMBINADO (ambas métricas) ===
+
+st.subheader("Evolución de Usuarios: Intención vs Registro")
+
+
+fechas = pd.date_range(start="2026-01-01", end="2026-01-31")
+
+fig_combinado = go.Figure()
+
+df_evolucion = pd.DataFrame({
+    'Fecha': fechas,
+    'Intención de Registro': [510, 780, 650, 720, 810, 1020, 1080, 950, 890, 1150,
+                              1230, 1100, 980, 1340, 1450, 1280, 1190, 1520, 1680, 1450,
+                              1320, 1890, 2010, 1780, 1650, 2150, 2340, 2100, 1980, 2450, 2680],
+    'Registro': [45, 68, 95, 82, 195, 120, 360, 280, 150, 320,
+                 410, 380, 290, 520, 580, 450, 390, 620, 710, 550,
+                 480, 780, 890, 720, 610, 920, 1050, 880, 750, 1120, 1280]
+})
+
+# Línea de Intención de Registro
+fig_combinado.add_trace(go.Scatter(
+    x=df_evolucion['Fecha'],
+    y=df_evolucion['Intención de Registro'],
+    mode='lines+markers',
+    name='Intención de Registro',
+    line=dict(color='#F28322', width=2),
+    marker=dict(size=5)
+))
+
+# Línea de Registros
+fig_combinado.add_trace(go.Scatter(
+    x=df_evolucion['Fecha'],
+    y=df_evolucion['Registro'],
+    mode='lines+markers',
+    name='Registros',
+    line=dict(color='#2450A6', width=2),
+    marker=dict(size=5)
+))
+
+fig_combinado.update_layout(
+    title='📈 Evolución de Usuarios: Intención vs Registro',
+    xaxis_title='Fecha',
+    yaxis_title='Usuarios',
+    height=450,
+    hovermode='x unified',
+    plot_bgcolor='#f5f5f5',
+    paper_bgcolor='#f5f5f5',
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='right',
+        x=1
+    ),
+    xaxis=dict(
+        tickformat='%d/%m',
+        dtick='D2',
+        showgrid=False
+    )
+)
+
+st.plotly_chart(fig_combinado, use_container_width=True)
