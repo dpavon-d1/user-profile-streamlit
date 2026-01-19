@@ -218,6 +218,16 @@ with right_col:
     )
 
     fig_mapa.update_layout(
+        coloraxis_colorbar=dict(
+            orientation="h",      # La barra ahora es horizontal
+            thickness=15,         # Grosor de la barra
+            title="Usuarios",    # Título de la escala
+            yanchor="top",        # Anclamos la parte superior de la barra...
+            y=-0.05,              # ...por debajo del eje del mapa (valores negativos bajan)
+            xanchor="right",     # Centramos la barra...
+            x=0.5,                # ...en el medio del gráfico
+            len=0.5               # Longitud de la barra (50% del ancho del mapa)
+        ),
         geo=dict(
             showframe=False,
             showcoastlines=False,       # Sin líneas de costa negras
