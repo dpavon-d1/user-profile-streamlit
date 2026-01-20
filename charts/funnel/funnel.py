@@ -4,7 +4,7 @@ Conversion funnel charts.
 
 import numpy as np
 import plotly.graph_objects as go
-from .css import FUNNEL_COLORS, FUNNEL_LAYOUT, FUNNEL_MARKER, FUNNEL_CONNECTOR
+from .css import FUNNEL_COLORS, FUNNEL_LAYOUT, FUNNEL_MARKER, FUNNEL_CONNECTOR, FUNNEL_TEXT
 
 
 def create_funnel_chart(
@@ -52,6 +52,7 @@ def create_funnel_chart(
         textinfo="text",
         textposition="inside",
         insidetextanchor="middle",
+        textfont=FUNNEL_TEXT,
         marker=marker_config,
         connector=FUNNEL_CONNECTOR,
         hoverinfo="y+text"

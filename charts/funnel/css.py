@@ -5,7 +5,7 @@ CSS styles and visual configuration for funnel charts.
 from config.styles.colors import hex_to_rgba, DEFAULT_OPACITY
 
 # === OPACITY FOR FUNNEL CHARTS ===
-FUNNEL_OPACITY = DEFAULT_OPACITY
+FUNNEL_OPACITY = 0.99
 
 # === FUNNEL COLORS (with opacity) ===
 COLORS = {
@@ -34,6 +34,11 @@ FUNNEL_LAYOUT = {
 # === MARKER CONFIG ===
 FUNNEL_MARKER = {
     "line": {"width": 1, "color": "white"}
+}
+
+# === TEXT CONFIG ===
+FUNNEL_TEXT = {
+    "color": "white"  # Force white text for all funnel steps
 }
 
 # === CONNECTOR CONFIG ===
