@@ -17,7 +17,7 @@ COLORS = {
 }
 
 # === DEFAULT OPACITY ===
-DEFAULT_OPACITY = 0.8
+DEFAULT_OPACITY = 0.9
 
 
 # === UTILITY FUNCTIONS ===
@@ -37,20 +37,6 @@ def hex_to_rgba(hex_color: str, opacity: float = DEFAULT_OPACITY) -> str:
     g = int(hex_color[2:4], 16)
     b = int(hex_color[4:6], 16)
     return f"rgba({r}, {g}, {b}, {opacity})"
-
-
-def apply_opacity(colors: list, opacity: float = DEFAULT_OPACITY) -> list:
-    """
-    Apply opacity to a list of HEX colors.
-    
-    Args:
-        colors: List of HEX colors
-        opacity: Opacity value between 0 and 1 (default: 0.8)
-        
-    Returns:
-        List of RGBA colors with opacity
-    """
-    return [hex_to_rgba(c, opacity) for c in colors]
 
 
 def get_colors_with_opacity(opacity: float = DEFAULT_OPACITY) -> dict:

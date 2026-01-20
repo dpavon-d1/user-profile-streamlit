@@ -2,7 +2,7 @@
 CSS styles and visual configuration for bar charts.
 """
 
-from config.styles.colors import hex_to_rgba, apply_opacity, DEFAULT_OPACITY
+from config.styles.colors import hex_to_rgba, DEFAULT_OPACITY
 
 # === OPACITY FOR BAR CHARTS ===
 BAR_OPACITY = DEFAULT_OPACITY# Adjust this value (0-1) for bar chart opacity
@@ -17,7 +17,7 @@ COLORS = {
     "grid": "#e0e0e0"
 }
 
-DEFAULT_COLORS = apply_opacity(['#E65100', '#F28322', '#33AAFF', '#2450A6'], BAR_OPACITY)
+DEFAULT_COLORS = [COLORS["primary"], COLORS["primary_dark"], COLORS["secondary"], COLORS["secondary_light"]]
 
 # === BAR LAYOUT ===
 BAR_LAYOUT = {
@@ -41,11 +41,4 @@ def get_legend_horizontal():
         "xanchor": "center",
         "x": 0.5
     }
-
-# === SESSION HISTORY SPECIFIC CONFIG ===
-SESSION_HISTORY_CONFIG = {
-    "bargap": 0.5,
-    "bargroupgap": 0.02,
-    "bar_width": 0.25
-}
 
