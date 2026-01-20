@@ -44,7 +44,7 @@ def get_cmap_azul():
 
 def get_cmap_naranja():
     """Medium orange colormap for 'Intención de Registro' column."""
-    return LinearSegmentedColormap.from_list('naranja', ['#EAF4FB', '#51A7DB', '#2B93D4'])
+    return LinearSegmentedColormap.from_list('naranja', ['#EAF4FB', '#51A7DB', '#1682C9'])
 
 def get_cmap_exito():
     """Strong orange colormap for 'Registrados' column - SUCCESS (no transparency)."""
