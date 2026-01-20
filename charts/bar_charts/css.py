@@ -2,17 +2,22 @@
 CSS styles and visual configuration for bar charts.
 """
 
-# === BAR COLORS ===
+from config.styles.colors import hex_to_rgba, apply_opacity, DEFAULT_OPACITY
+
+# === OPACITY FOR BAR CHARTS ===
+BAR_OPACITY = 0.85  # Adjust this value (0-1) for bar chart opacity
+
+# === BAR COLORS (with opacity) ===
 COLORS = {
-    "primary": "#F28322",
-    "primary_dark": "#A64724",
-    "secondary": "#2450A6",
-    "secondary_light": "#4E8ACF",
+    "primary": hex_to_rgba("#F28322", BAR_OPACITY),
+    "primary_dark": hex_to_rgba("#A64724", BAR_OPACITY),
+    "secondary": hex_to_rgba("#2450A6", BAR_OPACITY),
+    "secondary_light": hex_to_rgba("#4E8ACF", BAR_OPACITY),
     "background": "#ffffff",
     "grid": "#e0e0e0"
 }
 
-DEFAULT_COLORS = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
+DEFAULT_COLORS = apply_opacity(['#A64724', '#F28322', '#33AAFF', '#2450A6'], BAR_OPACITY)
 
 # === BAR LAYOUT ===
 BAR_LAYOUT = {

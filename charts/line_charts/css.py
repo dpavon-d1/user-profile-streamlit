@@ -2,10 +2,15 @@
 CSS styles and visual configuration for line charts.
 """
 
-# === LINE COLORS ===
+from config.styles.colors import hex_to_rgba
+
+# === OPACITY FOR LINE CHARTS ===
+LINE_OPACITY = 0.85
+
+# === LINE COLORS (with opacity) ===
 COLORS = {
-    "primary": "#F28322",      # Orange (Intention)
-    "secondary": "#2450A6",    # Blue (Registration)
+    "primary": hex_to_rgba("#F28322", LINE_OPACITY),      # Orange (Intention)
+    "secondary": hex_to_rgba("#2450A6", LINE_OPACITY),    # Blue (Registration)
     "background": "#ffffff",
     "grid": "#e0e0e0"
 }

@@ -3,9 +3,17 @@ CSS styles and visual configuration for heatmaps and gradient tables.
 """
 
 from matplotlib.colors import LinearSegmentedColormap
+from config.styles.colors import hex_to_rgba
 
-# === PLOTLY HEATMAP COLOR SCALE ===
-HEATMAP_COLORSCALE = [[0, '#FEF0E3'], [0.5, '#F9B86C'], [1, '#F28322']]
+# === OPACITY FOR HEATMAP CHARTS ===
+HEATMAP_OPACITY = 0.85
+
+# === PLOTLY HEATMAP COLOR SCALE (with opacity) ===
+HEATMAP_COLORSCALE = [
+    [0, hex_to_rgba('#FEF0E3', HEATMAP_OPACITY)], 
+    [0.5, hex_to_rgba('#F9B86C', HEATMAP_OPACITY)], 
+    [1, hex_to_rgba('#F28322', HEATMAP_OPACITY)]
+]
 
 # === HEATMAP LAYOUT ===
 HEATMAP_LAYOUT = {
