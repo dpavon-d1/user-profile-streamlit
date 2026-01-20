@@ -12,7 +12,7 @@ COLORS = {
     "primary": hex_to_rgba("#2450A6", BAR_OPACITY),
     "primary_dark": hex_to_rgba("#439FD9", BAR_OPACITY),
     "secondary": hex_to_rgba("#94D7F2", BAR_OPACITY),
-    "secondary_light": hex_to_rgba("#F2F2DC", BAR_OPACITY),
+    "secondary_light": hex_to_rgba("#F28322", BAR_OPACITY),
     "background": "#ffffff",
     "grid": "#e0e0e0"
 }
