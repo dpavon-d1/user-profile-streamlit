@@ -54,7 +54,7 @@ st.markdown(get_all_css(), unsafe_allow_html=True)
 # === HEADER ===
 render_header(
     title="Comportamiento & Conversión a Registro",
-    logo_path="assets/icono.png",
+    logo_path="pages/assets/icono.png",
     logo_width=200,
     sidebar_text="Comportamiento & Conversión a Registro"
 )
