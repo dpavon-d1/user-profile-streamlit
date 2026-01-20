@@ -4,7 +4,16 @@ Gráficos de heatmap y tablas con gradientes.
 
 import pandas as pd
 import plotly.graph_objects as go
-from styles.colors import HEATMAP_COLORSCALE, get_cmap_naranja, get_cmap_azul, get_cmap_purpura
+from .css import (
+    HEATMAP_COLORSCALE, 
+    HEATMAP_LAYOUT, 
+    TEXT_CONFIG, 
+    HOVER_CONFIG,
+    get_cmap_naranja, 
+    get_cmap_azul, 
+    get_cmap_purpura,
+    DEFAULT_COLUMN_CMAPS
+)
 
 
 def create_heatmap_table(
@@ -17,17 +26,6 @@ def create_heatmap_table(
 ) -> go.Figure:
     """
     Crea un heatmap interactivo con Plotly.
-    
-    Args:
-        df: DataFrame con los datos
-        index_col: Columna a usar como índice (filas)
-        title: Título del gráfico
-        height: Altura en pixels
-        colorscale: Escala de colores
-        show_colorbar: Si True, muestra la barra de colores
-        
-    Returns:
-        Figura de Plotly
     """
     if colorscale is None:
         colorscale = HEATMAP_COLORSCALE
@@ -42,14 +40,15 @@ def create_heatmap_table(
         y=df_indexed.index,
         colorscale=colorscale,
         text=df_indexed.values,
-        texttemplate='%{text:,.0f}',
-        textfont={'size': 12},
-        hovertemplate='%{y}<br>%{x}: %{z:,.0f}<extra></extra>'
+        texttemplate=TEXT_CONFIG["texttemplate"],
+        textfont=TEXT_CONFIG["textfont"],
+        hovertemplate=HOVER_CONFIG["hovertemplate"]
     ))
     
     fig.update_layout(
         title=title,
-        height=height
+        height=height,
+        **HEATMAP_LAYOUT
     )
     
     return fig
@@ -61,14 +60,6 @@ def style_dataframe_heatmap(
 ):
     """
     Aplica estilos de heatmap a un DataFrame de Pandas.
-    
-    Args:
-        df: DataFrame a estilizar
-        columns_config: Dict con {columna: 'naranja'|'azul'|'purpura'}
-                       Si None, usa configuración por defecto
-        
-    Returns:
-        DataFrame estilizado
     """
     # Mapeo de nombres a colormaps
     cmap_map = {
@@ -79,11 +70,7 @@ def style_dataframe_heatmap(
     
     # Configuración por defecto
     if columns_config is None:
-        columns_config = {
-            'Usuarios': 'azul',
-            'Intención de Registro': 'naranja',
-            'Registrados': 'purpura'
-        }
+        columns_config = DEFAULT_COLUMN_CMAPS
     
     # Aplicar gradientes
     styled = df.style
@@ -105,14 +92,5 @@ def style_dataframe_heatmap(
 def filter_top_n(df: pd.DataFrame, n: int, column: str) -> pd.DataFrame:
     """
     Filtra los top N registros de un DataFrame.
-    
-    Args:
-        df: DataFrame a filtrar
-        n: Número de registros
-        column: Columna por la cual ordenar
-        
-    Returns:
-        DataFrame filtrado
     """
     return df.nlargest(n, column)
-

@@ -4,7 +4,7 @@ Gráficos de barras.
 
 import pandas as pd
 import plotly.graph_objects as go
-from styles.colors import DEVICE_COLORS, COLORS, get_legend_horizontal
+from .css import DEVICE_COLORS, COLORS, BAR_LAYOUT, get_legend_horizontal, SESSION_HISTORY_CONFIG
 
 
 def create_device_bar_chart(
@@ -14,23 +14,10 @@ def create_device_bar_chart(
     intention_col: str = 'Con Intención',
     title: str = 'Según Dispositivo y Estado',
     height: int = 400,
-    colors: list = None,
-    barmode: str = 'group'
+    colors: list = None
 ) -> go.Figure:
     """
     Crea un gráfico de barras agrupadas por dispositivo.
-    
-    Args:
-        df: DataFrame con los datos
-        device_col: Columna de dispositivos
-        registered_col: Columna de registrados
-        intention_col: Columna de intención
-        title: Título del gráfico
-        height: Altura en pixels
-        colors: Lista de colores por dispositivo
-        
-    Returns:
-        Figura de Plotly
     """
     if colors is None:
         colors = DEVICE_COLORS
@@ -52,8 +39,7 @@ def create_device_bar_chart(
         title=title,
         legend=get_legend_horizontal(),
         height=height,
-        plot_bgcolor=COLORS["background"],
-        paper_bgcolor=COLORS["background"]
+        **BAR_LAYOUT
     )
     
     return fig
@@ -66,24 +52,10 @@ def create_session_history_chart(
     intention_col: str = 'Con Intención',
     title: str = 'Según historial de sesiones',
     height: int = 400,
-    bar_width: float = 0.25,
     colors: list = None
 ) -> go.Figure:
     """
     Crea un gráfico de barras por historial de sesiones.
-    
-    Args:
-        df: DataFrame con los datos
-        type_col: Columna de tipo de usuario
-        registered_col: Columna de registrados
-        intention_col: Columna de intención
-        title: Título del gráfico
-        height: Altura en pixels
-        bar_width: Ancho de las barras
-        colors: Lista de colores
-        
-    Returns:
-        Figura de Plotly
     """
     if colors is None:
         colors = DEVICE_COLORS
@@ -98,18 +70,17 @@ def create_session_history_chart(
             x=estados,
             y=[row[registered_col], row[intention_col]],
             marker_color=colors[i % len(colors)],
-            width=bar_width
+            width=SESSION_HISTORY_CONFIG["bar_width"]
         ))
     
     fig.update_layout(
         barmode='group',
         title=title,
-        bargap=0.5,
-        bargroupgap=0.02,
+        bargap=SESSION_HISTORY_CONFIG["bargap"],
+        bargroupgap=SESSION_HISTORY_CONFIG["bargroupgap"],
         legend=get_legend_horizontal(),
         height=height,
-        plot_bgcolor=COLORS["background"],
-        paper_bgcolor=COLORS["background"]
+        **BAR_LAYOUT
     )
     
     return fig
@@ -129,20 +100,6 @@ def create_grouped_bar_chart(
 ) -> go.Figure:
     """
     Crea un gráfico de barras agrupadas genérico.
-    
-    Args:
-        df: DataFrame con los datos
-        x_col: Columna para eje X
-        y_cols: Lista de columnas para eje Y (cada una será una serie)
-        colors: Lista de colores para cada serie
-        title: Título del gráfico
-        x_title: Título eje X
-        y_title: Título eje Y
-        height: Altura en pixels
-        rotate_labels: Si True, rota etiquetas del eje X
-        
-    Returns:
-        Figura de Plotly
     """
     if colors is None:
         colors = [COLORS["secondary"], COLORS["primary"]]
@@ -182,4 +139,3 @@ def create_grouped_bar_chart(
     )
     
     return fig
-

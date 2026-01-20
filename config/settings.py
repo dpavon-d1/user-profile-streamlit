@@ -17,20 +17,3 @@ CHART_CONFIG = {
     "bar_height": 400,
     "heatmap_height": 400
 }
-
-# === CONFIGURACIÓN DE MAPA ===
-MAP_CONFIG = {
-    "scrollZoom": False,
-    "doubleClick": False,
-    "displayModeBar": False
-}
-
-# === TOP N DEFAULTS ===
-TOP_N_CONFIG = {
-    "default": 10,
-    "min": 5,
-    "max": 50,
-    "conceptos": 15,
-    "categorias": 15
-}
-

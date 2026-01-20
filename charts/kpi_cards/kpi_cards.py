@@ -3,7 +3,7 @@ Componentes de KPI Cards para Streamlit.
 """
 
 import streamlit as st
-from kpi_css import BASIC_CARD_CSS, CONTAINER_CSS
+from .css import BASIC_CARD_CSS, CONTAINER_CSS
 
 def render_kpi_cards(kpis: dict):
     """

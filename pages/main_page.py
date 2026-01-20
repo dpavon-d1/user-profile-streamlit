@@ -43,7 +43,7 @@ from components.layout import (
     render_info_box,
     render_chart_container
 )
-from components.kpi_cards import render_kpi_row
+from charts.kpi_cards import render_kpi_row
 from components.filters import render_sidebar_filters
 
 # === CARGAR CSS GLOBAL ===

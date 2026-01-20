@@ -4,7 +4,7 @@ Gráficos de funnel de conversión.
 
 import numpy as np
 import plotly.graph_objects as go
-from .config import FUNNEL_COLORS
+from .css import FUNNEL_COLORS, FUNNEL_LAYOUT, FUNNEL_MARKER, FUNNEL_CONNECTOR
 
 
 def create_funnel_chart(
@@ -22,7 +22,7 @@ def create_funnel_chart(
         etapas: Lista de nombres de etapas
         valores: Lista de valores por etapa
         title: Título del gráfico
-        subtitle: Subtítulo del gráfico (opcional, por defecto None)
+        subtitle: Subtítulo del gráfico (opcional)
         height: Altura en pixels
         use_log_scale: Si True, aplica escala logarítmica
         
@@ -41,6 +41,10 @@ def create_funnel_chart(
     # Valores para el gráfico (con o sin escala log)
     x_values = np.log10(valores) if use_log_scale else valores
     
+    # Configurar marker con colores
+    marker_config = FUNNEL_MARKER.copy()
+    marker_config["color"] = FUNNEL_COLORS[:len(etapas)]
+    
     fig = go.Figure(go.Funnel(
         y=etapas,
         x=x_values,
@@ -48,38 +52,25 @@ def create_funnel_chart(
         textinfo="text",
         textposition="inside",
         insidetextanchor="middle",
-        marker={
-            "color": FUNNEL_COLORS[:len(etapas)],
-            "line": {"width": 1, "color": "white"}
-        },
-        connector={"fillcolor": "#A6C6ED", "line": {"width": 0}},
+        marker=marker_config,
+        connector=FUNNEL_CONNECTOR,
         hoverinfo="y+text"
     ))
 
+    # Título con o sin subtítulo
     if subtitle:
         fig.update_layout(
-            title={
-                "text": f"<b>{title}</b><br><span style='font-size:12px'>{subtitle}</span>"
-            }
+            title={"text": f"<b>{title}</b><br><span style='font-size:12px'>{subtitle}</span>"}
         )
     else:
         fig.update_layout(
-            title={
-                "text": f"<b>{title}</b>"
-            }
+            title={"text": f"<b>{title}</b>"}
         )
+    
+    # Aplicar layout desde css.py
     fig.update_layout(
-        xaxis={
-            "showticklabels": False,
-            "showgrid": False,
-            "zeroline": False
-        },
-        yaxis={
-            "tickfont": {"size": 11}  # Reducir tamaño de fuente de etiquetas
-        },
-        margin=dict(l=120, r=20, t=60, b=20),  # Márgenes más compactos
+        **FUNNEL_LAYOUT,
         height=height
     )
     
     return fig
-
