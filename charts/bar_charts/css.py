@@ -9,10 +9,10 @@ BAR_OPACITY = DEFAULT_OPACITY# Adjust this value (0-1) for bar chart opacity
 
 # === BAR COLORS (with opacity) ===
 COLORS = {
-    "primary": hex_to_rgba("#1D2173", BAR_OPACITY),
-    "primary_dark": hex_to_rgba("#1B1D40", BAR_OPACITY),
-    "secondary": hex_to_rgba("#323540", BAR_OPACITY),
-    "secondary_light": hex_to_rgba("#F28705", BAR_OPACITY),
+    "primary": hex_to_rgba("#2450A6", BAR_OPACITY),
+    "primary_dark": hex_to_rgba("#439FD9", BAR_OPACITY),
+    "secondary": hex_to_rgba("#94D7F2", BAR_OPACITY),
+    "secondary_light": hex_to_rgba("#F2F2DC", BAR_OPACITY),
     "background": "#ffffff",
     "grid": "#e0e0e0"
 }
