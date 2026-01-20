@@ -52,11 +52,17 @@ def create_funnel_chart(
         textinfo="text",
         textposition="inside",
         insidetextanchor="middle",
-        textfont=FUNNEL_TEXT,
+        constraintext="none",
         marker=marker_config,
         connector=FUNNEL_CONNECTOR,
         hoverinfo="y+text"
     ))
+    
+    # Force white text color for all funnel sections
+    fig.update_traces(
+        textfont_color="white",
+        insidetextfont_color="white"
+    )
 
     # Title with or without subtitle
     if subtitle:
