@@ -41,7 +41,7 @@ from charts import (
     get_map_config,
     create_bar_chart,
     create_stacked_bar_chart,
-    create_evolution_chart,
+    create_line_chart,
     create_heatmap_table,
     style_dataframe_heatmap,
     render_kpi_row
@@ -188,24 +188,30 @@ render_section_title("Evolución de Usuarios: Intención vs Registro")
 if evolution_df.empty:
     st.warning("No hay datos para el periodo seleccionado.")
 else:
-    fig_evolution_users = create_evolution_chart(
+    fig_evolution_users = create_line_chart(
         df=evolution_df,
-        metrics=['Intención de Registro', 'Registro'],
+        x_col='Fecha',
+        y_cols=['Intención de Registro', 'Registro'],
         colors=[COLORS["primary"], COLORS["secondary"]],
-        title='Evolución de Usuarios: Intención vs Registro',
-        y_title='Usuarios'
+        title='📈 Evolución de Usuarios: Intención vs Registro',
+        y_title='Usuarios',
+        date_format='%d/%m',
+        dtick='D2'
     )
     render_chart_container(fig_evolution_users)
 
 render_section_title("Evolución de Sesiones: Intención vs Registro")
 
 if not evolution_df.empty:
-    fig_evolution_sessions = create_evolution_chart(
+    fig_evolution_sessions = create_line_chart(
         df=evolution_df,
-        metrics=['Intención de Registro', 'Registro'],
+        x_col='Fecha',
+        y_cols=['Intención de Registro', 'Registro'],
         colors=[COLORS["primary"], COLORS["secondary"]],
-        title='Evolución de Sesiones: Intención vs Registro',
-        y_title='Sesiones'
+        title='📈 Evolución de Sesiones: Intención vs Registro',
+        y_title='Sesiones',
+        date_format='%d/%m',
+        dtick='D2'
     )
     render_chart_container(fig_evolution_sessions)
 

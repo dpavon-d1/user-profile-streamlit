@@ -1,1 +1,1 @@
-from .line_charts import create_evolution_chart
+from .line_charts import create_line_chart
