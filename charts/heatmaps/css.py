@@ -40,15 +40,15 @@ HOVER_CONFIG = {
 
 def get_cmap_azul():
     """Blue colormap for 'Usuarios' column - Azul Infobae."""
-    return LinearSegmentedColormap.from_list('azul', ['#E8EEF7', '#7A9DD1', '#2450A6'])
+    return LinearSegmentedColormap.from_list('azul', ['#C4D4F2', '#2E64D1', '#2450A6'])
 
 def get_cmap_naranja():
     """Medium orange colormap for 'Intención de Registro' column."""
-    return LinearSegmentedColormap.from_list('naranja', ['#FFF3E0', '#FFCC80', '#FB8C00'])
+    return LinearSegmentedColormap.from_list('naranja', ['#EAF4FB', '#78BAE3', '#439FD9'])
 
 def get_cmap_exito():
     """Strong orange colormap for 'Registrados' column - SUCCESS (no transparency)."""
-    return LinearSegmentedColormap.from_list('exito', ['#FFF3E0', '#FF8A65', '#E65100'])
+    return LinearSegmentedColormap.from_list('exito', ['#FEF1E7', '#F6A965', '#F39039'])
 
 
 # === DEFAULT COLUMN CONFIGURATION ===
