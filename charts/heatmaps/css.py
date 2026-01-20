@@ -48,7 +48,7 @@ def get_cmap_naranja():
 
 def get_cmap_exito():
     """Strong orange colormap for 'Registrados' column - SUCCESS (no transparency)."""
-    return LinearSegmentedColormap.from_list('exito', ['#FEF1E7', '#F6A965', '#F39039'])
+    return LinearSegmentedColormap.from_list('exito', ['#FEF1E7', '#F6A965', '#F1780E'])
 
 
 # === DEFAULT COLUMN CONFIGURATION ===
