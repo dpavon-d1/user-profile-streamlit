@@ -2,10 +2,10 @@
 CSS styles and visual configuration for funnel charts.
 """
 
-from config.styles.colors import hex_to_rgba
+from config.styles.colors import hex_to_rgba, DEFAULT_OPACITY
 
 # === OPACITY FOR FUNNEL CHARTS ===
-FUNNEL_OPACITY = 0.85
+FUNNEL_OPACITY = DEFAULT_OPACITY
 
 # === FUNNEL COLORS (with opacity) ===
 COLORS = {
