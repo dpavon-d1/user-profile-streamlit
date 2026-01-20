@@ -175,7 +175,7 @@ def get_device_data(devices: List[str] = None) -> pd.DataFrame:
     df = pd.DataFrame({
         'Dispositivo': ['Mobile', 'Desktop', 'Tablet', 'Smart TV'],
         'Registrado': [20, 12, 12, 8],
-        'Con Intención': [14, 38, 28, 8]
+        'Con Intención': [224, 38, 7, 5]
     })
     
     return filter_by_device(df, devices) if devices else df
