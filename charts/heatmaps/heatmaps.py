@@ -11,7 +11,7 @@ from .css import (
     HOVER_CONFIG,
     get_cmap_naranja, 
     get_cmap_azul, 
-    get_cmap_purpura,
+    get_cmap_exito,
     DEFAULT_COLUMN_CMAPS
 )
 
@@ -75,16 +75,19 @@ def style_dataframe_heatmap(
     Args:
         df: DataFrame to style
         columns_config: Dict mapping column names to colormap names
-                       ('naranja', 'azul', 'purpura')
+                       ('azul', 'naranja', 'exito')
         
     Returns:
         Styled DataFrame
     """
     # Map names to colormaps
+    # - azul: #2450A6 (Usuarios)
+    # - naranja: #FB8C00 (Intención de Registro)
+    # - exito: #E65100 (Registrados - Sin transparencia)
     cmap_map = {
-        'naranja': get_cmap_naranja(),
         'azul': get_cmap_azul(),
-        'purpura': get_cmap_purpura()
+        'naranja': get_cmap_naranja(),
+        'exito': get_cmap_exito()
     }
     
     # Default configuration

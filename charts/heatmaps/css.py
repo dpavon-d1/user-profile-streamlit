@@ -32,24 +32,29 @@ HOVER_CONFIG = {
 }
 
 
-# === COLORMAPS FOR PANDAS STYLE ===
-def get_cmap_naranja():
-    """Orange colormap for table gradients."""
-    return LinearSegmentedColormap.from_list('naranja', ['#FEF0E3', '#E38766', '#E65100'])
+# === COLORMAPS FOR PANDAS STYLE (Source/Medium Table) ===
+# Colors:
+# - Usuarios: #2450A6 (Azul Infobae)
+# - Intención de Registro: #FB8C00 (Naranja Medio)
+# - Registrados: #E65100 (Naranja Fuerte - Sin transparencia)
 
 def get_cmap_azul():
-    """Blue colormap for table gradients."""
-    return LinearSegmentedColormap.from_list('azul', ['#E3F0FE', '#4E8ACF', '#2450A6'])
+    """Blue colormap for 'Usuarios' column - Azul Infobae."""
+    return LinearSegmentedColormap.from_list('azul', ['#E8EEF7', '#7A9DD1', '#2450A6'])
 
-def get_cmap_purpura():
-    """Purple/orange colormap for table gradients."""
-    return LinearSegmentedColormap.from_list('purpura', ['#FFF1E5', '#F5A964', '#F28322'])
+def get_cmap_naranja():
+    """Medium orange colormap for 'Intención de Registro' column."""
+    return LinearSegmentedColormap.from_list('naranja', ['#FFF3E0', '#FFCC80', '#FB8C00'])
+
+def get_cmap_exito():
+    """Strong orange colormap for 'Registrados' column - SUCCESS (no transparency)."""
+    return LinearSegmentedColormap.from_list('exito', ['#FFF3E0', '#FF8A65', '#E65100'])
 
 
 # === DEFAULT COLUMN CONFIGURATION ===
 DEFAULT_COLUMN_CMAPS = {
     'Usuarios': 'azul',
     'Intención de Registro': 'naranja',
-    'Registrados': 'purpura'
+    'Registrados': 'exito'
 }
 
