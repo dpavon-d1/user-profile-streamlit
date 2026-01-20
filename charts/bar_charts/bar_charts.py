@@ -4,38 +4,37 @@ Gráficos de barras.
 
 import pandas as pd
 import plotly.graph_objects as go
-from .css import DEVICE_COLORS, COLORS, BAR_LAYOUT, get_legend_horizontal, SESSION_HISTORY_CONFIG
+from .css import DEFAULT_COLORS, COLORS, BAR_LAYOUT, get_legend_horizontal, SESSION_HISTORY_CONFIG
 
 
-def create_device_bar_chart(
+def create_bar_chart(
     df: pd.DataFrame,
-    device_col: str = 'Dispositivo',
-    registered_col: str = 'Registrado',
-    intention_col: str = 'Con Intención',
-    title: str = 'Según Dispositivo y Estado',
+    dimension_x_axis: str,
+    dimension_col: str,
+    breakdown_col: str,
+    title: str = '',
     height: int = 400,
-    colors: list = None
+    colors: list = None,
+    barmode: str = 'group'
 ) -> go.Figure:
     """
-    Crea un gráfico de barras agrupadas por dispositivo.
+    Crea un gráfico de barras.
     """
     if colors is None:
-        colors = DEVICE_COLORS
-    
-    estados = [registered_col, intention_col]
+        colors = DEFAULT_COLORS
     
     fig = go.Figure()
     
     for i, row in df.iterrows():
         fig.add_trace(go.Bar(
-            name=row[device_col],
-            x=estados,
-            y=[row[registered_col], row[intention_col]],
-            marker_color=colors[i % len(colors)]
+            name=row[dimension_x_axis],
+            x=[dimension_col, breakdown_col],
+            y=[row[dimension_col], row[breakdown_col]],
+            marker_color=colors[i % len(colors)] if colors else None
         ))
     
     fig.update_layout(
-        barmode='group',
+        barmode=barmode,
         title=title,
         legend=get_legend_horizontal(),
         height=height,
@@ -45,48 +44,7 @@ def create_device_bar_chart(
     return fig
 
 
-def create_session_history_chart(
-    df: pd.DataFrame,
-    type_col: str = 'Tipo Usuario',
-    registered_col: str = 'Registrado',
-    intention_col: str = 'Con Intención',
-    title: str = 'Según historial de sesiones',
-    height: int = 400,
-    colors: list = None
-) -> go.Figure:
-    """
-    Crea un gráfico de barras por historial de sesiones.
-    """
-    if colors is None:
-        colors = DEVICE_COLORS
-    
-    estados = [registered_col, intention_col]
-    
-    fig = go.Figure()
-    
-    for i, row in df.iterrows():
-        fig.add_trace(go.Bar(
-            name=row[type_col],
-            x=estados,
-            y=[row[registered_col], row[intention_col]],
-            marker_color=colors[i % len(colors)],
-            width=SESSION_HISTORY_CONFIG["bar_width"]
-        ))
-    
-    fig.update_layout(
-        barmode='group',
-        title=title,
-        bargap=SESSION_HISTORY_CONFIG["bargap"],
-        bargroupgap=SESSION_HISTORY_CONFIG["bargroupgap"],
-        legend=get_legend_horizontal(),
-        height=height,
-        **BAR_LAYOUT
-    )
-    
-    return fig
-
-
-def create_grouped_bar_chart(
+def create_stacked_bar_chart(
     df: pd.DataFrame,
     x_col: str,
     y_cols: list,

@@ -39,9 +39,8 @@ from charts import (
     create_funnel_chart,
     create_choropleth_map,
     get_map_config,
-    create_device_bar_chart,
-    create_session_history_chart,
-    create_grouped_bar_chart,
+    create_bar_chart,
+    create_stacked_bar_chart,
     create_evolution_chart,
     create_heatmap_table,
     style_dataframe_heatmap,
@@ -142,8 +141,11 @@ with col_device:
     if devices_df.empty:
         st.warning("Selecciona al menos un dispositivo.")
     else:
-        fig_device = create_device_bar_chart(
+        fig_device = create_bar_chart(
             df=devices_df,
+            dimension_x_axis='Dispositivo',
+            dimension_col='Registrado',
+            breakdown_col='Con Intención',
             title='Según Dispositivo y Estado',
             height=CHART_CONFIG["bar_height"]
         )
@@ -151,8 +153,11 @@ with col_device:
 
 with col_session:
     session_df = get_session_history_data()
-    fig_session = create_session_history_chart(
+    fig_session = create_bar_chart(
         df=session_df,
+        dimension_x_axis='Tipo Usuario',
+        dimension_col='Registrado',
+        breakdown_col='Con Intención',
         title='Según historial de sesiones',
         height=CHART_CONFIG["bar_height"]
     )
@@ -212,7 +217,7 @@ concepts_df = get_concepts_data()
 concepts_df["totals"] = concepts_df["Usuarios con Intención"] + concepts_df["Usuarios Registrados"]
 concepts_df = concepts_df.sort_values(by='totals', ascending=False)
 concepts_df.drop(columns=['totals'], inplace=True)
-fig_concepts = create_grouped_bar_chart(
+fig_concepts = create_stacked_bar_chart(
     df=concepts_df,
     x_col='Concepto',
     y_cols=['Usuarios con Intención', 'Usuarios Registrados'],
@@ -230,7 +235,7 @@ categories_df = get_wattson_category_data()
 categories_df["totals"] = categories_df["Usuarios con Intención"] + categories_df["Usuarios Registrados"]
 categories_df = categories_df.sort_values(by='totals', ascending=False)
 categories_df.drop(columns=['totals'], inplace=True)
-fig_categories = create_grouped_bar_chart(
+fig_categories = create_stacked_bar_chart(
     df=categories_df,
     x_col='Categoría Wattson',
     y_cols=['Usuarios con Intención', 'Usuarios Registrados'],

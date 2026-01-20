@@ -12,7 +12,7 @@ COLORS = {
     "grid": "#e0e0e0"
 }
 
-DEVICE_COLORS = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
+DEFAULT_COLORS = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
 
 # === LAYOUT BARRAS ===
 BAR_LAYOUT = {
