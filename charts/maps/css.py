@@ -10,7 +10,7 @@ MAP_OPACITY = 0.85
 # === MAP COLORS (with opacity) ===
 COLORS = {
     "primary": hex_to_rgba("#F28322", MAP_OPACITY),
-    "primary_dark": hex_to_rgba("#A64724", MAP_OPACITY),
+    "primary_dark": hex_to_rgba("#E65100", MAP_OPACITY),
     "primary_light": hex_to_rgba("#F2C6A5", MAP_OPACITY),
     "border": "#cccccc",
     "land": "#f5f5f5"
@@ -20,7 +20,7 @@ COLORS = {
 MAP_COLORSCALE = [
     [0, hex_to_rgba('#F2C6A5', MAP_OPACITY)], 
     [0.5, hex_to_rgba('#F28322', MAP_OPACITY)], 
-    [1, hex_to_rgba('#A64724', MAP_OPACITY)]
+    [1, hex_to_rgba('#E65100', MAP_OPACITY)]
 ]
 
 # === GEO LAYOUT ===

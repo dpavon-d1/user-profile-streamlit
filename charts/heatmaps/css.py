@@ -35,7 +35,7 @@ HOVER_CONFIG = {
 # === COLORMAPS FOR PANDAS STYLE ===
 def get_cmap_naranja():
     """Orange colormap for table gradients."""
-    return LinearSegmentedColormap.from_list('naranja', ['#FEF0E3', '#E38766', '#A64724'])
+    return LinearSegmentedColormap.from_list('naranja', ['#FEF0E3', '#E38766', '#E65100'])
 
 def get_cmap_azul():
     """Blue colormap for table gradients."""

@@ -4,7 +4,7 @@ Bar charts.
 
 import pandas as pd
 import plotly.graph_objects as go
-from .css import DEFAULT_COLORS, COLORS, BAR_LAYOUT, get_legend_horizontal, SESSION_HISTORY_CONFIG
+from .css import DEFAULT_COLORS, COLORS, BAR_LAYOUT, get_legend_horizontal
 
 
 def create_bar_chart(
