@@ -12,9 +12,17 @@ ROOT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 
 # === IMPORTS DE MÓDULOS PROPIOS ===
-from config.settings import CHART_CONFIG
-from styles.css import get_all_css
-from styles.colors import COLORS
+from config import (
+    CHART_CONFIG,
+    COLORS,
+    get_all_css,
+    render_header,
+    render_section_divider,
+    render_section_title,
+    render_info_box,
+    render_chart_container,
+    render_sidebar_filters
+)
 from data.mock_data import (
     get_funnel_data,
     get_evolution_data,
@@ -27,24 +35,18 @@ from data.mock_data import (
     get_wattson_category_data,
     get_kpi_data
 )
-from charts.funnel import create_funnel_chart
-from charts.maps import create_choropleth_map, get_map_config
-from charts.bar_charts import (
+from charts import (
+    create_funnel_chart,
+    create_choropleth_map,
+    get_map_config,
     create_device_bar_chart,
     create_session_history_chart,
-    create_grouped_bar_chart
+    create_grouped_bar_chart,
+    create_evolution_chart,
+    create_heatmap_table,
+    style_dataframe_heatmap,
+    render_kpi_row
 )
-from charts.line_charts import create_evolution_chart
-from charts.heatmaps import create_heatmap_table, style_dataframe_heatmap
-from components.layout import (
-    render_header,
-    render_section_divider,
-    render_section_title,
-    render_info_box,
-    render_chart_container
-)
-from charts.kpi_cards import render_kpi_row
-from components.filters import render_sidebar_filters
 
 # === CARGAR CSS GLOBAL ===
 st.markdown(get_all_css(), unsafe_allow_html=True)
