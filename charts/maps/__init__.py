@@ -1,1 +1,1 @@
-from .maps import create_choropleth_map, get_map_config
+from .maps import create_map, get_map_config

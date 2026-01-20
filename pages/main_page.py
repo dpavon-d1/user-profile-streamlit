@@ -37,7 +37,7 @@ from data.mock_data import (
 )
 from charts import (
     create_funnel_chart,
-    create_choropleth_map,
+    create_map,
     get_map_config,
     create_bar_chart,
     create_stacked_bar_chart,
@@ -119,7 +119,7 @@ with right_col:
     if country_data.empty:
         st.warning("Selecciona al menos un país para ver el mapa.")
     else:
-        fig_mapa = create_choropleth_map(
+        fig_mapa = create_map(
             df=country_data,
             locations_col='ISO',
             color_col='Registros',
