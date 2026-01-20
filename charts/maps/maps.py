@@ -1,5 +1,5 @@
 """
-Gráficos de mapas geográficos.
+Geographic map charts.
 """
 
 import pandas as pd
@@ -22,23 +22,23 @@ def create_map(
     colorbar_title: str = None
 ) -> go.Figure:
     """
-    Crea un mapa choropleth genérico.
+    Create a generic choropleth map.
     
     Args:
-        df: DataFrame con los datos
-        locations_col: Columna con códigos ISO de países
-        color_col: Columna para colorear el mapa
-        hover_name_col: Columna para nombre en hover (opcional)
-        hover_data_cols: Lista de columnas adicionales para hover
-        title: Título del mapa
-        height: Altura en pixels
-        colorscale: Escala de colores personalizada
-        projection: Tipo de proyección ('natural earth', 'equirectangular', etc.)
-        show_colorbar: Si True, muestra la barra de colores
-        colorbar_title: Título de la barra de colores
+        df: DataFrame with the data
+        locations_col: Column with ISO country codes
+        color_col: Column for map coloring
+        hover_name_col: Column for hover name (optional)
+        hover_data_cols: List of additional columns for hover
+        title: Map title
+        height: Height in pixels
+        colorscale: Custom color scale
+        projection: Projection type ('natural earth', 'equirectangular', etc.)
+        show_colorbar: If True, shows the color bar
+        colorbar_title: Color bar title
         
     Returns:
-        Figura de Plotly
+        Plotly Figure
     """
     if colorscale is None:
         colorscale = MAP_COLORSCALE
@@ -54,7 +54,7 @@ def create_map(
         title=title
     )
     
-    # Configurar colorbar
+    # Configure colorbar
     colorbar_config = COLORBAR_CONFIG.copy()
     if colorbar_title:
         colorbar_config["title"] = colorbar_title
@@ -67,7 +67,7 @@ def create_map(
         margin=dict(l=0, r=0, t=50, b=0)
     )
     
-    # Igualar bordes de países coloreados
+    # Match borders for colored countries
     fig.update_traces(
         marker_line_color=COLORS["border"],
         marker_line_width=0.5
@@ -78,6 +78,6 @@ def create_map(
 
 def get_map_config() -> dict:
     """
-    Retorna configuración para desactivar interactividad del mapa.
+    Returns configuration to disable map interactivity.
     """
     return MAP_INTERACTION_CONFIG

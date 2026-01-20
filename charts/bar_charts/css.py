@@ -1,8 +1,8 @@
 """
-Estilos CSS y configuración visual para gráficos de barras.
+CSS styles and visual configuration for bar charts.
 """
 
-# === COLORES BARRAS ===
+# === BAR COLORS ===
 COLORS = {
     "primary": "#F28322",
     "primary_dark": "#A64724",
@@ -14,7 +14,7 @@ COLORS = {
 
 DEFAULT_COLORS = ['#A64724', '#F28322', 'rgb(51,153,255)', '#2450A6']
 
-# === LAYOUT BARRAS ===
+# === BAR LAYOUT ===
 BAR_LAYOUT = {
     "plot_bgcolor": COLORS["background"],
     "paper_bgcolor": COLORS["background"],
@@ -26,9 +26,9 @@ BAR_LAYOUT = {
     }
 }
 
-# === LEYENDA HORIZONTAL ===
+# === HORIZONTAL LEGEND ===
 def get_legend_horizontal():
-    """Retorna configuración de leyenda horizontal centrada."""
+    """Returns centered horizontal legend configuration."""
     return {
         "orientation": "h",
         "yanchor": "bottom",
@@ -37,7 +37,7 @@ def get_legend_horizontal():
         "x": 0.5
     }
 
-# === CONFIG ESPECÍFICO PARA HISTORIAL SESIONES ===
+# === SESSION HISTORY SPECIFIC CONFIG ===
 SESSION_HISTORY_CONFIG = {
     "bargap": 0.5,
     "bargroupgap": 0.02,

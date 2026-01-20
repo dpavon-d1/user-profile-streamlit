@@ -1,6 +1,6 @@
 """
-Módulo de gráficos del dashboard.
-Contiene funciones que retornan figuras de Plotly.
+Dashboard charts module.
+Contains functions that return Plotly figures.
 """
 
 from .funnel import create_funnel_chart

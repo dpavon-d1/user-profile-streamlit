@@ -1,16 +1,16 @@
 """
-Colores globales del dashboard.
-Para uso en páginas que necesiten colores sin importar de un gráfico específico.
-Cada módulo de gráficos tiene su propio css.py con colores específicos.
+Global dashboard colors.
+For use in pages that need colors without importing from a specific chart.
+Each chart module has its own css.py with specific colors.
 """
 
-# === COLORES GLOBALES ===
+# === GLOBAL COLORS ===
 COLORS = {
-    "primary": "#F28322",        # Naranja principal
-    "primary_dark": "#A64724",   # Naranja oscuro
-    "primary_light": "#F2C6A5",  # Naranja claro
-    "secondary": "#2450A6",      # Azul principal
-    "secondary_light": "#4E8ACF", # Azul claro
+    "primary": "#F28322",        # Primary orange
+    "primary_dark": "#A64724",   # Dark orange
+    "primary_light": "#F2C6A5",  # Light orange
+    "secondary": "#2450A6",      # Primary blue
+    "secondary_light": "#4E8ACF", # Light blue
     "background": "#ffffff",
     "grid": "#e0e0e0",
     "border": "#cccccc"

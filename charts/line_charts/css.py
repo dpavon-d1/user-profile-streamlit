@@ -1,16 +1,16 @@
 """
-Estilos CSS y configuración visual para gráficos de líneas.
+CSS styles and visual configuration for line charts.
 """
 
-# === COLORES LÍNEAS ===
+# === LINE COLORS ===
 COLORS = {
-    "primary": "#F28322",      # Naranja (Intención)
-    "secondary": "#2450A6",    # Azul (Registro)
+    "primary": "#F28322",      # Orange (Intention)
+    "secondary": "#2450A6",    # Blue (Registration)
     "background": "#ffffff",
     "grid": "#e0e0e0"
 }
 
-# === LAYOUT LÍNEAS ===
+# === LINE LAYOUT ===
 LINE_LAYOUT = {
     "plot_bgcolor": COLORS["background"],
     "paper_bgcolor": COLORS["background"],
@@ -27,9 +27,9 @@ LINE_LAYOUT = {
     }
 }
 
-# === LEYENDA DERECHA ===
+# === RIGHT LEGEND ===
 def get_legend_right():
-    """Retorna configuración de leyenda horizontal a la derecha."""
+    """Returns right-aligned horizontal legend configuration."""
     return {
         "orientation": "h",
         "yanchor": "bottom",
@@ -38,12 +38,12 @@ def get_legend_right():
         "x": 1
     }
 
-# === ESTILO LÍNEAS ===
+# === LINE STYLE ===
 LINE_STYLE = {
     "width": 2
 }
 
-# === ESTILO MARKERS ===
+# === MARKER STYLE ===
 MARKER_STYLE = {
     "size": 5
 }

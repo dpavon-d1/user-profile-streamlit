@@ -1,6 +1,6 @@
 """
-Módulo de configuración del dashboard.
-Contiene constantes, configuraciones y settings globales.
+Dashboard configuration module.
+Contains constants, configurations and global settings.
 """
 
 from .settings import *

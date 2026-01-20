@@ -1,15 +1,15 @@
 """
-Estilos CSS y configuración visual para heatmaps y tablas con gradientes.
+CSS styles and visual configuration for heatmaps and gradient tables.
 """
 
 from matplotlib.colors import LinearSegmentedColormap
 
-# === ESCALA HEATMAP PLOTLY ===
+# === PLOTLY HEATMAP COLOR SCALE ===
 HEATMAP_COLORSCALE = [[0, '#FEF0E3'], [0.5, '#F9B86C'], [1, '#F28322']]
 
-# === LAYOUT HEATMAP ===
+# === HEATMAP LAYOUT ===
 HEATMAP_LAYOUT = {
-    "yaxis": {"autorange": "reversed"}  # Primera fila arriba
+    "yaxis": {"autorange": "reversed"}  # First row on top
 }
 
 # === TEXT TEMPLATE ===
@@ -24,21 +24,21 @@ HOVER_CONFIG = {
 }
 
 
-# === COLORMAPS PARA PANDAS STYLE ===
+# === COLORMAPS FOR PANDAS STYLE ===
 def get_cmap_naranja():
-    """Colormap naranja para gradientes de tabla."""
+    """Orange colormap for table gradients."""
     return LinearSegmentedColormap.from_list('naranja', ['#FEF0E3', '#E38766', '#A64724'])
 
 def get_cmap_azul():
-    """Colormap azul para gradientes de tabla."""
+    """Blue colormap for table gradients."""
     return LinearSegmentedColormap.from_list('azul', ['#E3F0FE', '#4E8ACF', '#2450A6'])
 
 def get_cmap_purpura():
-    """Colormap púrpura/naranja para gradientes de tabla."""
+    """Purple/orange colormap for table gradients."""
     return LinearSegmentedColormap.from_list('purpura', ['#FFF1E5', '#F5A964', '#F28322'])
 
 
-# === CONFIGURACIÓN POR DEFECTO DE COLUMNAS ===
+# === DEFAULT COLUMN CONFIGURATION ===
 DEFAULT_COLUMN_CMAPS = {
     'Usuarios': 'azul',
     'Intención de Registro': 'naranja',

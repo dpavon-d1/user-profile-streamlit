@@ -1,5 +1,5 @@
 """
-Gráficos de funnel de conversión.
+Conversion funnel charts.
 """
 
 import numpy as np
@@ -10,38 +10,38 @@ from .css import FUNNEL_COLORS, FUNNEL_LAYOUT, FUNNEL_MARKER, FUNNEL_CONNECTOR
 def create_funnel_chart(
     etapas: list,
     valores: list,
-    title: str = "Embudo de Conversión",
+    title: str = "Conversion Funnel",
     height: int = 500,
     use_log_scale: bool = True,
     subtitle: str = None
 ) -> go.Figure:
     """
-    Crea un gráfico de funnel con escala logarítmica opcional.
+    Create a funnel chart with optional logarithmic scale.
     
     Args:
-        etapas: Lista de nombres de etapas
-        valores: Lista de valores por etapa
-        title: Título del gráfico
-        subtitle: Subtítulo del gráfico (opcional)
-        height: Altura en pixels
-        use_log_scale: Si True, aplica escala logarítmica
+        etapas: List of stage names
+        valores: List of values per stage
+        title: Chart title
+        subtitle: Chart subtitle (optional)
+        height: Height in pixels
+        use_log_scale: If True, applies logarithmic scale
         
     Returns:
-        Figura de Plotly
+        Plotly Figure
     """
-    # Calcular porcentajes respecto al total (primera etapa)
+    # Calculate percentages relative to total (first stage)
     pct_initial = [(v / valores[0]) * 100 for v in valores]
     
-    # Crear etiquetas personalizadas
+    # Create custom labels
     textos_personalizados = [
         f"{v:,}<br>{p:.2f}%" if p < 100 else f"{v:,}" 
         for v, p in zip(valores, pct_initial)
     ]
     
-    # Valores para el gráfico (con o sin escala log)
+    # Values for the chart (with or without log scale)
     x_values = np.log10(valores) if use_log_scale else valores
     
-    # Configurar marker con colores
+    # Configure marker with colors
     marker_config = FUNNEL_MARKER.copy()
     marker_config["color"] = FUNNEL_COLORS[:len(etapas)]
     
@@ -57,7 +57,7 @@ def create_funnel_chart(
         hoverinfo="y+text"
     ))
 
-    # Título con o sin subtítulo
+    # Title with or without subtitle
     if subtitle:
         fig.update_layout(
             title={"text": f"<b>{title}</b><br><span style='font-size:12px'>{subtitle}</span>"}
@@ -67,7 +67,7 @@ def create_funnel_chart(
             title={"text": f"<b>{title}</b>"}
         )
     
-    # Aplicar layout desde css.py
+    # Apply layout from css.py
     fig.update_layout(
         **FUNNEL_LAYOUT,
         height=height

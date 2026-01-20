@@ -1,5 +1,5 @@
 """
-Gráficos de líneas temporales.
+Time series line charts.
 """
 
 import pandas as pd
@@ -22,24 +22,24 @@ def create_line_chart(
     show_legend: bool = True
 ) -> go.Figure:
     """
-    Crea un gráfico de líneas genérico.
+    Create a generic line chart.
     
     Args:
-        df: DataFrame con los datos
-        x_col: Columna para eje X
-        y_cols: Lista de columnas para eje Y (cada una será una línea)
-        colors: Lista de colores para cada línea
-        title: Título del gráfico
-        x_title: Título eje X
-        y_title: Título eje Y
-        height: Altura en pixels
-        show_markers: Si True, muestra marcadores en la línea
-        date_format: Formato de fecha para eje X (ej: '%d/%m')
-        dtick: Intervalo de ticks (ej: 'D2' para cada 2 días)
-        show_legend: Si True, muestra la leyenda
+        df: DataFrame with the data
+        x_col: Column for X axis
+        y_cols: List of columns for Y axis (each will be a line)
+        colors: List of colors for each line
+        title: Chart title
+        x_title: X axis title
+        y_title: Y axis title
+        height: Height in pixels
+        show_markers: If True, shows markers on the line
+        date_format: Date format for X axis (e.g.: '%d/%m')
+        dtick: Tick interval (e.g.: 'D2' for every 2 days)
+        show_legend: If True, shows the legend
         
     Returns:
-        Figura de Plotly
+        Plotly Figure
     """
     if colors is None:
         colors = [COLORS["primary"], COLORS["secondary"]]
@@ -62,10 +62,10 @@ def create_line_chart(
         
         fig.add_trace(go.Scatter(**trace_config))
     
-    # Configurar layout base
+    # Configure base layout
     layout_config = LINE_LAYOUT.copy()
     
-    # Configurar formato de fecha si se especifica
+    # Configure date format if specified
     if date_format:
         layout_config["xaxis"]["tickformat"] = date_format
     if dtick:

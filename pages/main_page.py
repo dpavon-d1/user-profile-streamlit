@@ -1,17 +1,17 @@
 """
-Main Page - Dashboard de Comportamiento & Conversión a Registro
-Versión modularizada para escalabilidad y reutilización.
+Main Page - Behavior & Registration Conversion Dashboard
+Modularized version for scalability and reusability.
 """
 
 import streamlit as st
 import sys
 from pathlib import Path
 
-# Agregar el directorio raíz al path para imports
+# Add root directory to path for imports
 ROOT_DIR = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT_DIR))
 
-# === IMPORTS DE MÓDULOS PROPIOS ===
+# === CUSTOM MODULE IMPORTS ===
 from config import (
     CHART_CONFIG,
     COLORS,
@@ -47,7 +47,7 @@ from charts import (
     render_kpi_row
 )
 
-# === CARGAR CSS GLOBAL ===
+# === LOAD GLOBAL CSS ===
 st.markdown(get_all_css(), unsafe_allow_html=True)
 
 # === HEADER ===
@@ -58,11 +58,11 @@ render_header(
     sidebar_text="Comportamiento & Conversión a Registro"
 )
 
-# === LISTA DE DISPOSITIVOS Y PAÍSES DISPONIBLES ===
+# === AVAILABLE DEVICES AND COUNTRIES ===
 ALL_DEVICES = ['Mobile', 'Desktop', 'Tablet', 'Smart TV']
 ALL_COUNTRIES = ["Argentina", "México", "España", "Colombia"]
 
-# === FILTROS SIDEBAR ===
+# === SIDEBAR FILTERS ===
 filters = render_sidebar_filters(
     devices=ALL_DEVICES,
     countries=ALL_COUNTRIES,
@@ -70,28 +70,28 @@ filters = render_sidebar_filters(
     show_sort_by=False
 )
 
-# Extraer valores de filtros
+# Extract filter values
 selected_countries = filters.get('pais', ALL_COUNTRIES)
 selected_devices = filters.get('dispositivo', ALL_DEVICES)
 selected_period = filters.get('periodo', [])
 
 
-# Convertir periodo a tupla si tiene valores
+# Convert period to tuple if it has values
 date_range = tuple(selected_period) if len(selected_period) == 2 else None
 
-# === CARGAR DATOS CON FILTROS ===
+# === LOAD DATA WITH FILTERS ===
 funnel_data = get_funnel_data(countries=selected_countries)
 devices_df = get_device_data(devices=selected_devices)
 kpi_data = get_kpi_data(countries=selected_countries)
 country_data = get_country_data(countries=selected_countries)
 evolution_df = get_evolution_data(date_range=date_range)
 
-# === KPIs PRINCIPALES ===
+# === MAIN KPIs ===
 render_kpi_row(kpi_data)
 
 render_section_divider()
 
-# === SECCIÓN: FUNNEL Y MAPA ===
+# === SECTION: FUNNEL AND MAP ===
 left_col, right_col = st.columns([1, 1])
 
 with left_col:
@@ -115,7 +115,7 @@ with left_col:
 with right_col:
     render_section_title("Usuarios por País")
     
-    # Mostrar mensaje si no hay países seleccionados
+    # Show message if no countries selected
     if country_data.empty:
         st.warning("Selecciona al menos un país para ver el mapa.")
     else:
@@ -131,7 +131,7 @@ with right_col:
         
         render_chart_container(fig_mapa, config=get_map_config())
 
-# === SECCIÓN: CLASIFICACIÓN DE USUARIOS ===
+# === SECTION: USER CLASSIFICATION ===
 render_section_divider()
 render_section_title("Clasificación de Usuarios")
 
@@ -174,7 +174,7 @@ with col_segment:
     )
     render_chart_container(fig_segment)
 
-# === SECCIÓN: TABLA FUENTE/MEDIO ===
+# === SECTION: SOURCE/MEDIUM TABLE ===
 render_section_title("Detalle por Fuente / Medio")
 
 source_df = get_source_medium_data()
@@ -182,7 +182,7 @@ styled_df = style_dataframe_heatmap(source_df)
 
 st.dataframe(styled_df, use_container_width=True, hide_index=True)
 
-# === SECCIÓN: EVOLUCIÓN TEMPORAL ===
+# === SECTION: TEMPORAL EVOLUTION ===
 render_section_title("Evolución de Usuarios: Intención vs Registro")
 
 if evolution_df.empty:
@@ -215,10 +215,10 @@ if not evolution_df.empty:
     )
     render_chart_container(fig_evolution_sessions)
 
-# === SECCIÓN: AFINIDAD WATTSON ===
+# === SECTION: WATTSON AFFINITY ===
 render_section_title("Afinidad de Usuarios - Modelo Wattson")
 
-# Conceptos
+# Concepts
 concepts_df = get_concepts_data()
 concepts_df["totals"] = concepts_df["Usuarios con Intención"] + concepts_df["Usuarios Registrados"]
 concepts_df = concepts_df.sort_values(by='totals', ascending=False)
@@ -236,7 +236,7 @@ fig_concepts = create_stacked_bar_chart(
 )
 render_chart_container(fig_concepts)
 
-# Categorías Wattson
+# Wattson Categories
 categories_df = get_wattson_category_data()
 categories_df["totals"] = categories_df["Usuarios con Intención"] + categories_df["Usuarios Registrados"]
 categories_df = categories_df.sort_values(by='totals', ascending=False)

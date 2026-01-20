@@ -1,5 +1,5 @@
 """
-Componentes de filtros para sidebar de Streamlit.
+Filter components for Streamlit sidebar.
 """
 
 import streamlit as st
@@ -14,26 +14,26 @@ def render_sidebar_filters(
     sort_options: list = None
 ) -> dict:
     """
-    Renderiza filtros en el sidebar y retorna los valores seleccionados.
+    Render filters in the sidebar and return selected values.
     
     Args:
-        devices: Lista de dispositivos disponibles
-        countries: Lista de países disponibles
-        show_top_n: Si True, muestra slider de Top N
-        show_sort_by: Si True, muestra selector de ordenamiento
-        sort_options: Opciones para ordenar
+        devices: List of available devices
+        countries: List of available countries
+        show_top_n: If True, shows Top N slider
+        show_sort_by: If True, shows sort selector
+        sort_options: Options for sorting
         
     Returns:
-        Dict con los valores de filtros seleccionados
+        Dict with selected filter values
     """
     st.sidebar.header("Filtros")
     
     filters = {}
     
-    # Filtro de periodo
+    # Period filter
     filters['periodo'] = st.sidebar.date_input("Selecciona un periodo", [])
     
-    # Filtro de país
+    # Country filter
     if countries is None:
         countries = ["Argentina", "México", "España", "Colombia"]
     filters['pais'] = st.sidebar.multiselect(
@@ -42,7 +42,7 @@ def render_sidebar_filters(
         default=countries[0] if countries else None
     )
     
-    # Filtro de dispositivo
+    # Device filter
     if devices is not None:
         filters['dispositivo'] = st.sidebar.multiselect(
             "Dispositivo",
@@ -54,7 +54,7 @@ def render_sidebar_filters(
     if show_top_n:
         filters['top_n'] = st.sidebar.slider("Top N", 5, 50, 10)
     
-    # Ordenar por
+    # Sort by
     if show_sort_by:
         if sort_options is None:
             sort_options = ['Usuarios', 'Intención de Registro', 'Registrados']
@@ -65,10 +65,10 @@ def render_sidebar_filters(
 
 def render_period_filter() -> list:
     """
-    Renderiza solo el filtro de periodo.
+    Render only the period filter.
     
     Returns:
-        Lista de fechas seleccionadas
+        List of selected dates
     """
     return st.sidebar.date_input("Selecciona un periodo", [])
 
@@ -80,16 +80,16 @@ def render_multiselect_filter(
     key: str = None
 ) -> list:
     """
-    Renderiza un filtro multiselect genérico.
+    Render a generic multiselect filter.
     
     Args:
-        label: Etiqueta del filtro
-        options: Opciones disponibles
-        default: Valor por defecto
-        key: Key único para el widget
+        label: Filter label
+        options: Available options
+        default: Default value
+        key: Unique key for the widget
         
     Returns:
-        Lista de valores seleccionados
+        List of selected values
     """
     if default is None:
         default = options
@@ -104,17 +104,17 @@ def render_top_n_slider(
     key: str = None
 ) -> int:
     """
-    Renderiza un slider para seleccionar Top N.
+    Render a slider to select Top N.
     
     Args:
-        label: Etiqueta del slider
-        min_val: Valor mínimo
-        max_val: Valor máximo
-        default: Valor por defecto
-        key: Key único para el widget
+        label: Slider label
+        min_val: Minimum value
+        max_val: Maximum value
+        default: Default value
+        key: Unique key for the widget
         
     Returns:
-        Valor seleccionado
+        Selected value
     """
     return st.sidebar.slider(label, min_val, max_val, default, key=key)
 

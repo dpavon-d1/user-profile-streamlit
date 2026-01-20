@@ -1,6 +1,6 @@
 """
-Datos mock para el dashboard.
-En producción, estas funciones se reemplazarían por consultas a base de datos o APIs.
+Mock data for the dashboard.
+In production, these functions would be replaced with database queries or APIs.
 """
 
 import pandas as pd
@@ -9,20 +9,20 @@ from datetime import date
 
 
 # ============================================================
-# FUNCIONES DE FILTRADO
+# FILTERING FUNCTIONS
 # ============================================================
 
 def filter_by_country(df: pd.DataFrame, countries: List[str], country_col: str = 'Pais') -> pd.DataFrame:
     """
-    Filtra un DataFrame por países seleccionados.
+    Filter a DataFrame by selected countries.
     
     Args:
-        df: DataFrame a filtrar
-        countries: Lista de países a incluir
-        country_col: Nombre de la columna de país
+        df: DataFrame to filter
+        countries: List of countries to include
+        country_col: Country column name
         
     Returns:
-        DataFrame filtrado
+        Filtered DataFrame
     """
     if not countries or country_col not in df.columns:
         return df
@@ -31,15 +31,15 @@ def filter_by_country(df: pd.DataFrame, countries: List[str], country_col: str =
 
 def filter_by_device(df: pd.DataFrame, devices: List[str], device_col: str = 'Dispositivo') -> pd.DataFrame:
     """
-    Filtra un DataFrame por dispositivos seleccionados.
+    Filter a DataFrame by selected devices.
     
     Args:
-        df: DataFrame a filtrar
-        devices: Lista de dispositivos a incluir
-        device_col: Nombre de la columna de dispositivo
+        df: DataFrame to filter
+        devices: List of devices to include
+        device_col: Device column name
         
     Returns:
-        DataFrame filtrado
+        Filtered DataFrame
     """
     if not devices or device_col not in df.columns:
         return df
@@ -48,16 +48,16 @@ def filter_by_device(df: pd.DataFrame, devices: List[str], device_col: str = 'Di
 
 def filter_by_date_range(df: pd.DataFrame, start_date: date, end_date: date, date_col: str = 'Fecha') -> pd.DataFrame:
     """
-    Filtra un DataFrame por rango de fechas.
+    Filter a DataFrame by date range.
     
     Args:
-        df: DataFrame a filtrar
-        start_date: Fecha de inicio
-        end_date: Fecha de fin
-        date_col: Nombre de la columna de fecha
+        df: DataFrame to filter
+        start_date: Start date
+        end_date: End date
+        date_col: Date column name
         
     Returns:
-        DataFrame filtrado
+        Filtered DataFrame
     """
     if date_col not in df.columns:
         return df
@@ -70,15 +70,15 @@ def filter_by_date_range(df: pd.DataFrame, start_date: date, end_date: date, dat
 
 def filter_top_n(df: pd.DataFrame, n: int, column: str) -> pd.DataFrame:
     """
-    Filtra los top N registros de un DataFrame.
+    Filter top N records from a DataFrame.
     
     Args:
-        df: DataFrame a filtrar
-        n: Número de registros
-        column: Columna por la cual ordenar
+        df: DataFrame to filter
+        n: Number of records
+        column: Column to sort by
         
     Returns:
-        DataFrame filtrado
+        Filtered DataFrame
     """
     if column not in df.columns:
         return df.head(n)
@@ -86,26 +86,26 @@ def filter_top_n(df: pd.DataFrame, n: int, column: str) -> pd.DataFrame:
 
 
 # ============================================================
-# FUNNEL DE CONVERSIÓN
+# CONVERSION FUNNEL
 # ============================================================
 
 def get_funnel_data(countries: List[str] = None) -> dict:
     """
-    Retorna datos del funnel de conversión.
+    Return conversion funnel data.
     
     Args:
-        countries: Lista de países para filtrar (mock: ajusta valores proporcionalmente)
+        countries: List of countries to filter (mock: adjusts values proportionally)
     
     Returns:
-        dict con 'Etapa' y 'Cantidad'
+        dict with 'Etapa' and 'Cantidad'
     """
-    # Datos base
+    # Base data
     base_data = {
         'Etapa': ['Usuarios Totales', 'Intención de Registro', 'Registro Finalizado'],
         'Cantidad': [35215, 3715, 615]
     }
     
-    # Mock: ajustar según cantidad de países seleccionados
+    # Mock: adjust based on number of selected countries
     if countries:
         all_countries = ["Argentina", "México", "España", "Colombia"]
         ratio = len(countries) / len(all_countries)
@@ -115,7 +115,7 @@ def get_funnel_data(countries: List[str] = None) -> dict:
 
 
 # ============================================================
-# EVOLUCIÓN TEMPORAL
+# TEMPORAL EVOLUTION
 # ============================================================
 
 def get_evolution_data(
@@ -124,19 +124,19 @@ def get_evolution_data(
     date_range: tuple = None
 ) -> pd.DataFrame:
     """
-    Retorna datos de evolución temporal de usuarios.
+    Return temporal evolution data for users.
     
     Args:
-        start_date: Fecha de inicio por defecto
-        end_date: Fecha de fin por defecto
-        date_range: Tupla de (fecha_inicio, fecha_fin) del filtro
+        start_date: Default start date
+        end_date: Default end date
+        date_range: Tuple of (start_date, end_date) from filter
         
     Returns:
-        DataFrame con Fecha, Intención de Registro, Registro
+        DataFrame with Fecha, Intención de Registro, Registro
     """
     fechas = pd.date_range(start=start_date, end=end_date)
     
-    # Datos mock
+    # Mock data
     intencion = [510, 780, 650, 720, 810, 1020, 1080, 950, 890, 1150,
                  1230, 1100, 980, 1340, 1450, 1280, 1190, 1520, 1680, 1450,
                  1320, 1890, 2010, 1780, 1650, 2150, 2340, 2100, 1980, 2450, 2680]
@@ -151,7 +151,7 @@ def get_evolution_data(
         'Registro': registro
     })
     
-    # Aplicar filtro de fecha si existe
+    # Apply date filter if exists
     if date_range and len(date_range) == 2:
         df = filter_by_date_range(df, date_range[0], date_range[1])
     
@@ -159,18 +159,18 @@ def get_evolution_data(
 
 
 # ============================================================
-# DATOS POR DISPOSITIVO
+# DEVICE DATA
 # ============================================================
 
 def get_device_data(devices: List[str] = None) -> pd.DataFrame:
     """
-    Retorna datos de usuarios por dispositivo.
+    Return user data by device.
     
     Args:
-        devices: Lista de dispositivos para filtrar
+        devices: List of devices to filter
     
     Returns:
-        DataFrame con Dispositivo, Registrado, Con Intención
+        DataFrame with Dispositivo, Registrado, Con Intención
     """
     df = pd.DataFrame({
         'Dispositivo': ['Mobile', 'Desktop', 'Tablet', 'Smart TV'],
@@ -182,15 +182,15 @@ def get_device_data(devices: List[str] = None) -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS POR HISTORIAL DE SESIÓN
+# SESSION HISTORY DATA
 # ============================================================
 
 def get_session_history_data() -> pd.DataFrame:
     """
-    Retorna datos por tipo de usuario (nuevo vs recurrente).
+    Return data by user type (new vs returning).
     
     Returns:
-        DataFrame con Tipo Usuario, Registrado, Con Intención
+        DataFrame with Tipo Usuario, Registrado, Con Intención
     """
     return pd.DataFrame({
         'Tipo Usuario': ['Recurrente', 'Nuevo'],
@@ -200,18 +200,18 @@ def get_session_history_data() -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS POR PAÍS
+# COUNTRY DATA
 # ============================================================
 
 def get_country_data(countries: List[str] = None) -> pd.DataFrame:
     """
-    Retorna datos de usuarios por país.
+    Return user data by country.
     
     Args:
-        countries: Lista de países para filtrar
+        countries: List of countries to filter
     
     Returns:
-        DataFrame con Pais, ISO, Intención, Registros
+        DataFrame with Pais, ISO, Intención, Registros
     """
     df = pd.DataFrame({
         'Pais': ['Argentina', 'México', 'España', 'Colombia', 'Chile', 'Perú'],
@@ -224,15 +224,15 @@ def get_country_data(countries: List[str] = None) -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS POR SEGMENTO DE CONSUMO
+# CONSUMPTION SEGMENT DATA
 # ============================================================
 
 def get_segment_data() -> pd.DataFrame:
     """
-    Retorna datos por segmento de consumo.
+    Return data by consumption segment.
     
     Returns:
-        DataFrame con Segmento Consumo, Intención, Registrados
+        DataFrame with Segmento Consumo, Intención, Registrados
     """
     return pd.DataFrame({
         'Segmento Consumo': ['0-5 Light', '6-10 Medium', '11-20 Heavy', '21+ Super Heavy'],
@@ -242,15 +242,15 @@ def get_segment_data() -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS POR FUENTE / MEDIO
+# SOURCE / MEDIUM DATA
 # ============================================================
 
 def get_source_medium_data() -> pd.DataFrame:
     """
-    Retorna datos por fuente/medio de tráfico.
+    Return data by traffic source/medium.
     
     Returns:
-        DataFrame con Fuente / Medio, Usuarios, Intención de Registro, Registrados
+        DataFrame with Fuente / Medio, Usuarios, Intención de Registro, Registrados
     """
     return pd.DataFrame({
         'Fuente / Medio': [
@@ -302,15 +302,15 @@ def get_source_medium_data() -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS POR CONCEPTO (WATTSON)
+# CONCEPT DATA (WATTSON)
 # ============================================================
 
 def get_concepts_data() -> pd.DataFrame:
     """
-    Retorna datos por concepto del modelo Wattson.
+    Return data by Wattson model concept.
         
     Returns:
-        DataFrame con Concepto, Usuarios con Intención, Usuarios Registrados
+        DataFrame with Concepto, Usuarios con Intención, Usuarios Registrados
     """
     return pd.DataFrame({
         'Concepto': [
@@ -337,15 +337,15 @@ def get_concepts_data() -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS POR CATEGORÍA WATTSON
+# WATTSON CATEGORY DATA
 # ============================================================
 
 def get_wattson_category_data() -> pd.DataFrame:
     """
-    Retorna datos por categoría del modelo Wattson.
+    Return data by Wattson model category.
         
     Returns:
-        DataFrame con Categoría Wattson, Usuarios con Intención, Usuarios Registrados
+        DataFrame with Categoría Wattson, Usuarios con Intención, Usuarios Registrados
     """
     return pd.DataFrame({
         'Categoría Wattson': [
@@ -370,21 +370,21 @@ def get_wattson_category_data() -> pd.DataFrame:
 
 
 # ============================================================
-# DATOS DE KPIs
+# KPI DATA
 # ============================================================
 
 def get_kpi_data(countries: List[str] = None) -> dict:
     """
-    Retorna datos de KPIs principales.
+    Return main KPI data.
     
     Args:
-        countries: Lista de países (mock: ajusta valores)
+        countries: List of countries (mock: adjusts values)
     
     Returns:
-        dict con los KPIs del dashboard
+        dict with dashboard KPIs
     """
 
-    # Valores base
+    # Base values
     kpis = {
         'sesiones_intencion': 6650,
         'pct_rebote': 4.7,
@@ -397,13 +397,13 @@ def get_kpi_data(countries: List[str] = None) -> dict:
         'usuarios_no_registrados': 5000,
     }
     
-    # Mock: ajustar según cantidad de países seleccionados
+    # Mock: adjust based on number of selected countries
     if countries:
         all_countries = ["Argentina", "México", "España", "Colombia"]
         ratio = len(countries) / len(all_countries)
         kpis['sesiones_intencion'] = int(kpis['sesiones_intencion'] * ratio)
     
-    # Formatear para display
+    # Format for display
     return {
         'Sesiones con Intención': f"{kpis['sesiones_intencion']:,}".replace(',', '.'),
         '% Rebote': f"{kpis['pct_rebote']:.1f}%".replace('.', ','),

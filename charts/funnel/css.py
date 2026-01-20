@@ -1,12 +1,12 @@
 """
-Estilos CSS y configuración visual para gráficos de funnel.
+CSS styles and visual configuration for funnel charts.
 """
 
-# === COLORES FUNNEL ===
+# === FUNNEL COLORS ===
 FUNNEL_COLORS = ["#2450A6", "#1565C0", "#4E8ACF"]
 CONNECTOR_COLOR = "#A6C6ED"
 
-# === LAYOUT FUNNEL ===
+# === FUNNEL LAYOUT ===
 FUNNEL_LAYOUT = {
     "margin": {"l": 120, "r": 20, "t": 60, "b": 20},
     "xaxis": {

@@ -1,6 +1,6 @@
 """
-Módulo de datos del dashboard.
-Contiene funciones para extraer/generar DataFrames.
+Dashboard data module.
+Contains functions to extract/generate DataFrames.
 """
 
 from .mock_data import *

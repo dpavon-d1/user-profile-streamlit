@@ -1,5 +1,5 @@
 """
-Componentes de layout para Streamlit.
+Layout components for Streamlit.
 """
 
 import streamlit as st
@@ -12,46 +12,46 @@ def render_header(
     sidebar_text: str = None
 ):
     """
-    Renderiza el header de la página con logo y título centrados.
+    Render the page header with centered logo and title.
     
     Args:
-        title: Título principal de la página
-        logo_path: Ruta al logo (opcional)
-        logo_width: Ancho del logo en pixels
-        sidebar_text: Texto para mostrar en sidebar (opcional)
+        title: Main page title
+        logo_path: Path to logo (optional)
+        logo_width: Logo width in pixels
+        sidebar_text: Text to show in sidebar (optional)
     """
-    # Texto en sidebar
+    # Sidebar text
     if sidebar_text:
         st.sidebar.markdown(sidebar_text)
     
-    # Logo centrado
+    # Centered logo
     if logo_path:
         _, col_center, _ = st.columns([2, 1, 2])
         with col_center:
             st.image(logo_path, width=logo_width, use_container_width=False)
     
-    # Título centrado
+    # Centered title
     st.markdown(
         f"<h1 style='text-align: center;'>{title}</h1>",
         unsafe_allow_html=True
     )
     
-    # Línea divisoria
+    # Divider line
     st.markdown("---")
 
 
 def render_section_divider():
-    """Renderiza una línea divisoria entre secciones."""
+    """Render a divider line between sections."""
     st.markdown("---")
 
 
 def render_section_title(title: str, emoji: str = None):
     """
-    Renderiza un título de sección.
+    Render a section title.
     
     Args:
-        title: Título de la sección
-        emoji: Emoji opcional al inicio
+        title: Section title
+        emoji: Optional emoji at the beginning
     """
     if emoji:
         st.subheader(f"{emoji} {title}")
@@ -61,24 +61,24 @@ def render_section_title(title: str, emoji: str = None):
 
 def create_columns(ratios: list):
     """
-    Crea columnas con proporciones específicas.
+    Create columns with specific proportions.
     
     Args:
-        ratios: Lista de proporciones (ej: [1, 1] para 50-50)
+        ratios: List of proportions (e.g.: [1, 1] for 50-50)
         
     Returns:
-        Tupla de columnas
+        Tuple of columns
     """
     return st.columns(ratios)
 
 
 def render_info_box(text: str, italic: bool = True):
     """
-    Renderiza un cuadro de información.
+    Render an information box.
     
     Args:
-        text: Texto a mostrar
-        italic: Si True, muestra en itálica
+        text: Text to display
+        italic: If True, displays in italic
     """
     if italic:
         st.info(f"*{text}*")
@@ -88,12 +88,12 @@ def render_info_box(text: str, italic: bool = True):
 
 def render_chart_container(fig, use_container_width: bool = True, config: dict = None):
     """
-    Renderiza un gráfico de Plotly con configuración estándar.
+    Render a Plotly chart with standard configuration.
     
     Args:
-        fig: Figura de Plotly
-        use_container_width: Si True, usa el ancho completo del contenedor
-        config: Configuración adicional para el gráfico
+        fig: Plotly figure
+        use_container_width: If True, uses full container width
+        config: Additional chart configuration
     """
     if config is None:
         st.plotly_chart(fig, use_container_width=use_container_width)

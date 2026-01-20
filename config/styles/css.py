@@ -1,14 +1,14 @@
 """
-Estilos CSS globales para Streamlit.
-CSS específico de componentes está en cada módulo.
+Global CSS styles for Streamlit.
+Component-specific CSS is in each module.
 """
 
 
 def get_all_css():
-    """Retorna CSS global para el dashboard."""
+    """Returns global CSS for the dashboard."""
     return """
 <style>
-/* === ST.INFO TRANSPARENTE === */
+/* === TRANSPARENT ST.INFO === */
 div[data-testid="stAlert"] {
     background-color: transparent !important;
     border: none !important;
@@ -21,12 +21,12 @@ div[data-testid="stAlert"] p {
     font-size: 14px !important;
 }
 
-/* === OCULTAR ÍNDICE EN DATAFRAMES === */
+/* === HIDE DATAFRAME INDEX === */
 .dataframe tbody th {
     display: none;
 }
 
-/* === AJUSTES GENERALES === */
+/* === GENERAL ADJUSTMENTS === */
 .stPlotlyChart {
     margin-bottom: 0 !important;
 }

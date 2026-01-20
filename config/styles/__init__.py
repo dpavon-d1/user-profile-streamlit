@@ -1,6 +1,6 @@
 """
-Módulo de estilos del dashboard.
-Contiene CSS, paletas de colores y escalas de color.
+Dashboard styles module.
+Contains CSS, color palettes and color scales.
 """
 
 from .colors import *

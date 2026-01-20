@@ -1,7 +1,6 @@
 """
-Módulo de componentes UI reutilizables para Streamlit.
+Reusable UI components module for Streamlit.
 """
-
 
 from .filters import render_sidebar_filters
 from .layout import render_header, render_section_divider, render_section_title, render_info_box, render_chart_container

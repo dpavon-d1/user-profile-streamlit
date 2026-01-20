@@ -1,5 +1,11 @@
+"""
+CSS styles for KPI cards.
+"""
+
+# === BASIC CARD TEMPLATE ===
 BASIC_CARD_CSS = '''<div class="metric-card"><h3>{title}</h3><p>{value}</p></div>'''
 
+# === CONTAINER WITH FLEXBOX LAYOUT ===
 CONTAINER_CSS = '''
     <style>
     .kpi-container {{
@@ -22,7 +28,7 @@ CONTAINER_CSS = '''
         justify-content: center;
         text-align: center;
         min-width: 150px;
-        flex: 0 1 calc(20% - 12px); /* Máximo 5 cards por fila */
+        flex: 0 1 calc(20% - 12px); /* Max 5 cards per row */
         max-width: calc(20% - 12px);
     }}
     .metric-card h3 {{

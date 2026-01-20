@@ -1,5 +1,5 @@
 """
-Gráficos de barras.
+Bar charts.
 """
 
 import pandas as pd
@@ -18,7 +18,20 @@ def create_bar_chart(
     barmode: str = 'group'
 ) -> go.Figure:
     """
-    Crea un gráfico de barras.
+    Create a bar chart.
+    
+    Args:
+        df: DataFrame with the data
+        dimension_x_axis: Column for x-axis dimension
+        dimension_col: First metric column
+        breakdown_col: Second metric column
+        title: Chart title
+        height: Height in pixels
+        colors: List of colors for bars
+        barmode: Bar mode ('group' or 'stack')
+        
+    Returns:
+        Plotly Figure
     """
     if colors is None:
         colors = DEFAULT_COLORS
@@ -51,13 +64,28 @@ def create_stacked_bar_chart(
     colors: list = None,
     title: str = '',
     x_title: str = '',
-    y_title: str = 'Usuarios',
+    y_title: str = 'Users',
     height: int = 450,
     rotate_labels: bool = False,
     barmode: str = 'group'
 ) -> go.Figure:
     """
-    Crea un gráfico de barras agrupadas genérico.
+    Create a generic grouped/stacked bar chart.
+    
+    Args:
+        df: DataFrame with the data
+        x_col: Column for x-axis
+        y_cols: List of columns for y-axis (each will be a bar series)
+        colors: List of colors for each series
+        title: Chart title
+        x_title: X-axis title
+        y_title: Y-axis title
+        height: Height in pixels
+        rotate_labels: If True, rotates x-axis labels 45 degrees
+        barmode: Bar mode ('group' or 'stack')
+        
+    Returns:
+        Plotly Figure
     """
     if colors is None:
         colors = [COLORS["secondary"], COLORS["primary"]]

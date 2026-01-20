@@ -1,8 +1,8 @@
 """
-Estilos CSS y configuración visual para gráficos de mapas.
+CSS styles and visual configuration for map charts.
 """
 
-# === COLORES MAPAS ===
+# === MAP COLORS ===
 COLORS = {
     "primary": "#F28322",
     "primary_dark": "#A64724",
@@ -11,10 +11,10 @@ COLORS = {
     "land": "#f5f5f5"
 }
 
-# === ESCALA DE COLOR CHOROPLETH ===
+# === CHOROPLETH COLOR SCALE ===
 MAP_COLORSCALE = [[0, '#F2C6A5'], [0.5, '#F28322'], [1, '#A64724']]
 
-# === LAYOUT GEO ===
+# === GEO LAYOUT ===
 GEO_LAYOUT = {
     "showframe": False,
     "showcoastlines": False,
@@ -31,11 +31,11 @@ GEO_LAYOUT = {
     "framewidth": 0
 }
 
-# === COLORBAR HORIZONTAL ===
+# === HORIZONTAL COLORBAR ===
 COLORBAR_CONFIG = {
     "orientation": "h",
     "thickness": 15,
-    "title": "Usuarios",
+    "title": "Users",
     "yanchor": "top",
     "y": -0.05,
     "xanchor": "right",
@@ -43,19 +43,10 @@ COLORBAR_CONFIG = {
     "len": 0.5
 }
 
-# === CONFIG INTERACTIVIDAD (para st.plotly_chart) ===
+# === INTERACTION CONFIG (for st.plotly_chart) ===
 MAP_INTERACTION_CONFIG = {
     'scrollZoom': False,
     'doubleClick': False,
     'displayModeBar': False
 }
-
-
-# === CONFIGURACIÓN DE MAPA ===
-MAP_CONFIG = {
-    "scrollZoom": False,
-    "doubleClick": False,
-    "displayModeBar": False
-}
-
 

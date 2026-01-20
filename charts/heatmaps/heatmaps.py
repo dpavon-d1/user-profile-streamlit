@@ -1,5 +1,5 @@
 """
-Gráficos de heatmap y tablas con gradientes.
+Heatmap charts and gradient tables.
 """
 
 import pandas as pd
@@ -25,12 +25,23 @@ def create_heatmap_table(
     show_colorbar: bool = False
 ) -> go.Figure:
     """
-    Crea un heatmap interactivo con Plotly.
+    Create an interactive heatmap with Plotly.
+    
+    Args:
+        df: DataFrame with the data
+        index_col: Column to use as index/row labels
+        title: Chart title
+        height: Height in pixels
+        colorscale: Custom color scale
+        show_colorbar: If True, shows the color bar
+        
+    Returns:
+        Plotly Figure
     """
     if colorscale is None:
         colorscale = HEATMAP_COLORSCALE
     
-    # Establecer índice
+    # Set index
     df_indexed = df.set_index(index_col)
     
     fig = go.Figure(data=go.Heatmap(
@@ -59,20 +70,28 @@ def style_dataframe_heatmap(
     columns_config: dict = None
 ):
     """
-    Aplica estilos de heatmap a un DataFrame de Pandas.
+    Apply heatmap styles to a Pandas DataFrame.
+    
+    Args:
+        df: DataFrame to style
+        columns_config: Dict mapping column names to colormap names
+                       ('naranja', 'azul', 'purpura')
+        
+    Returns:
+        Styled DataFrame
     """
-    # Mapeo de nombres a colormaps
+    # Map names to colormaps
     cmap_map = {
         'naranja': get_cmap_naranja(),
         'azul': get_cmap_azul(),
         'purpura': get_cmap_purpura()
     }
     
-    # Configuración por defecto
+    # Default configuration
     if columns_config is None:
         columns_config = DEFAULT_COLUMN_CMAPS
     
-    # Aplicar gradientes
+    # Apply gradients
     styled = df.style
     
     for col, cmap_name in columns_config.items():
@@ -82,7 +101,7 @@ def style_dataframe_heatmap(
                 cmap=cmap_map.get(cmap_name, get_cmap_naranja())
             )
     
-    # Formatear números
+    # Format numbers
     format_dict = {col: '{:,.0f}' for col in df.columns if df[col].dtype in ['int64', 'float64']}
     styled = styled.format(format_dict)
     
@@ -91,6 +110,14 @@ def style_dataframe_heatmap(
 
 def filter_top_n(df: pd.DataFrame, n: int, column: str) -> pd.DataFrame:
     """
-    Filtra los top N registros de un DataFrame.
+    Filter top N records from a DataFrame.
+    
+    Args:
+        df: DataFrame to filter
+        n: Number of top records
+        column: Column to sort by
+        
+    Returns:
+        Filtered DataFrame
     """
     return df.nlargest(n, column)

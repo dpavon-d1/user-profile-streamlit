@@ -1,15 +1,15 @@
 """
-Configuraciones globales del dashboard.
+Global dashboard configurations.
 """
 
-# === CONFIGURACIÓN DE LA PÁGINA ===
+# === PAGE CONFIGURATION ===
 PAGE_CONFIG = {
     "page_title": "Infobae - Comportamiento & Conversión a Registro",
     "layout": "wide",
     "initial_sidebar_state": "expanded"
 }
 
-# === CONFIGURACIÓN DE GRÁFICOS ===
+# === CHART CONFIGURATION ===
 CHART_CONFIG = {
     "default_height": 450,
     "funnel_height": 500,
